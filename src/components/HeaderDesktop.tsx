@@ -2,15 +2,15 @@ import React from 'react';
 import AvatarSmall from './AvatarSmall';
 import SearchInput from './SearchInput';
 import Logo from './Logo';
-import HeaderMenus from './HeaderMenus';
+import HeaderMenus, { HeaderMenuProps } from './HeaderMenus';
 
-const HeaderDesktop = () => {
+const HeaderDesktop = ({ menus }: HeaderMenuProps) => {
   return (
     <>
       <div className="h-16 flex items-center">
         <Logo isLogoBig={true} />
         <div className="ml-8">
-          <HeaderMenus menus={null} />
+          <HeaderMenus menus={menus} />
         </div>
       </div>
 

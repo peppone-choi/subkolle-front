@@ -4,16 +4,29 @@ import AvatarSmall from './AvatarSmall';
 import Logo from './Logo';
 import HeaderMobile from './HeaderMobile';
 import HeaderDesktop from './HeaderDesktop';
+import { HeaderMenuProps, HeaderMenuType } from './HeaderMenus';
 
-const Header = () => {
+const fetchMenus = async () => {
+  return (await fetch('http://localhost:3000/api/menu')).json();
+};
+
+const Header = async () => {
+  const menuData = await fetchMenus();
+  const menuDataBind = menuData.map((menu: any) => {
+    return {
+      icon: menu.icon,
+      text: menu.text,
+      linkTo: menu.linkTo,
+    } as HeaderMenuType;
+  }) as HeaderMenuType[];
   return (
     <>
       <div className="flex w-screen justify-center h-28 xl:h-16 bg-slate-700">
         <div className="hidden xl:flex justify-between items-center w-9/12">
-          <HeaderDesktop />
+          <HeaderDesktop menus={menuData} />
         </div>
         <div className="flex w-screen xl:hidden">
-          <HeaderMobile />
+          <HeaderMobile menus={menuData} />
         </div>
       </div>
     </>

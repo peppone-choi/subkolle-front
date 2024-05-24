@@ -1,22 +1,22 @@
 import Link from 'next/link';
 import React from 'react';
-interface HeaderMenuProps {
+export interface HeaderMenuProps {
   menus: HeaderMenuType[] | null;
 }
-interface HeaderMenuType {
-  icon: string | null;
+export interface HeaderMenuType {
+  icon: string;
   text: string;
   linkTo: string;
 }
 const HeaderMenus = ({ menus }: HeaderMenuProps) => {
   return (
     <>
-      <div className="hidden md:flex text-white space-x-2 md:space-x-6 font-semibold">
+      <div className="flex text-white space-x-2 md:space-x-6 font-semibold">
         {menus?.map(menu => {
           return (
             <Link href={menu.linkTo}>
-              <div>
-                <p>{menu?.icon}</p> <p className="hidden md:flex">{menu.text}</p>
+              <div className="flex space-x-3">
+                <p>{menu.icon}</p> <p className="hidden md:flex">{menu.text}</p>
               </div>
             </Link>
           );

@@ -2,15 +2,15 @@ import React from 'react';
 import Logo from './Logo';
 import AvatarSmall from './AvatarSmall';
 import SearchInput from './SearchInput';
-import HeaderMenus from './HeaderMenus';
+import HeaderMenus, { HeaderMenuProps } from './HeaderMenus';
 
-const HeaderMobile = () => {
+const HeaderMobile = ({ menus }: HeaderMenuProps) => {
   return (
     <>
       <div className="flex w-full h-16 translate-y-1 justify-between items-center">
         <Logo isLogoBig={false} />
-        <div className="">
-          <HeaderMenus menus={null} />
+        <div className="flex">
+          <HeaderMenus menus={menus} />
         </div>
         <AvatarSmall />
       </div>
