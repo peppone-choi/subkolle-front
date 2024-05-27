@@ -11,14 +11,13 @@ const fetchMenus = async () => {
 };
 
 const Header = async () => {
-  const menuData = await fetchMenus();
-  const menuDataBind = menuData.map((menu: any) => {
-    return {
-      icon: menu.icon,
-      text: menu.text,
-      linkTo: menu.linkTo,
-    } as HeaderMenuType;
-  }) as HeaderMenuType[];
+  let menuData: HeaderMenuType[] | null = null;
+  try {
+    menuData = await fetchMenus();
+  } catch (error) {
+    menuData = null;
+  }
+
   return (
     <>
       <div className="flex w-screen justify-center h-28 xl:h-16 bg-slate-700">
