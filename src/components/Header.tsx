@@ -15,7 +15,7 @@ const Header = async () => {
   try {
     menuData = await fetchMenus();
   } catch (error) {
-    menuData = null;
+    console.error('Failed to fetch menu data', error);
   }
 
   return (

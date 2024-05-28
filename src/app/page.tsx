@@ -8,7 +8,9 @@ export default async function Home() {
   let data = null;
   try {
     data = await fetchCarousels();
-  } catch (error) {}
+  } catch (error) {
+    console.error('Failed to fetch carousel data', error);
+  }
 
   return (
     <main className="w-screen justify-center">
