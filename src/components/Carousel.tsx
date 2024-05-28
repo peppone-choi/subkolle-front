@@ -38,18 +38,18 @@ const Carousel = ({ data }: CarouselData) => {
         <Link href={carousel.linkTo} key={carousel.order}>
           <SwiperSlide>
             <div
-              className="h-44 xl:h-[28rem] bg-cover bg-center bg-no-repeat flex items-center justify-center relative"
+              className="h-44 lg:h-[30rem] bg-cover bg-center bg-no-repeat flex items-center justify-center relative"
               style={{
                 backgroundImage: `url(${carousel.imageUrl})`,
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
                 backgroundRepeat: 'no-repeat',
               }}>
-              <div className="h-full relative flex w-11/12 xl:w-9/12 flex-col justify-center xl:-translate-y-16 px-10">
-                <h1 className="text-2xl lg:text-4xl xl:text-8xl font-extrabold leading-normal xl:leading-relaxed text-white">
+              <div className="h-full relative flex w-11/12 lg:w-9/12 flex-col justify-center lg:-translate-y-16 px-10">
+                <h1 className="text-2xl md:text-4xl lg:text-8xl font-extrabold leading-normal lg:leading-relaxed text-white">
                   {carousel.title}
                 </h1>
-                <div className="mt-1 lg:mt-2 xl:mt-4 text-sm lg:text-base xl:text-4xl ml-0.5 lg:ml-1 xl:ml-2 text-white">
+                <div className="mt-1 md:mt-2 lg:mt-4 text-sm md:text-base lg:text-4xl ml-0.5 md:ml-1 lg:ml-2 text-white">
                   {carousel.description}
                 </div>
               </div>

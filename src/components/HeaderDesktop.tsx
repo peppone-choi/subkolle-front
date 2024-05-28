@@ -14,7 +14,7 @@ const HeaderDesktop = ({ menus }: HeaderMenuProps) => {
         </div>
       </div>
 
-      <div className="hidden lg:flex ml-2 h-16 items-center">
+      <div className="hidden md:flex ml-2 h-16 items-center">
         <div className="flex items-center space-x-6">
           <div>
             <SearchInput />

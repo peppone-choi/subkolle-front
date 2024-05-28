@@ -5,34 +5,34 @@
 /* CUSTOM CSS FOR CAROUSEL*/
 
 .swiper {
-  @apply flex items-center justify-center h-44 xl:h-[30rem] !important;
+  @apply flex items-center justify-center h-44 lg:h-[30rem] !important;
 }
 
 .swiper-button-prev {
-  @apply absolute xl:left-[calc(100vw-29rem)] !important;
+  @apply bg-gradient-to-l from-transparent to-white lg:to-transparent from-50% via-90% absolute left-0 lg:left-[calc(100vw-17rem)] xl:left-[calc(100vw-29rem)] !important;
 }
 
 .swiper-button-prev,
 .swiper-button-next {
-  @apply xl:bg-black xl:bg-opacity-30 size-6 xl:size-10 z-50 justify-center top-[7rem] xl:top-[27rem] -translate-y-1/2 !important;
+  @apply h-44 w-28 lg:bg-black lg:bg-opacity-30 size-6 lg:size-10 z-50 justify-center top-5 translate-y-0.5 lg:top-[27rem]  !important;
 }
 
 .swiper-button-next {
-  @apply xl:right-96 xl:translate-x-8 !important;
+  @apply bg-gradient-to-r from-transparent from-50% via-90%  to-white lg:to-transparent  right-0 lg:right-48 xl:right-96 lg:translate-x-8 !important;
 }
 .swiper-pagination {
-  @apply flex justify-center xl:justify-start bottom-16 xl:left-[calc((100vw/12)*1.7)] p-0 !important;
+  @apply flex justify-center lg:justify-start bottom-2 lg:bottom-16 lg:left-[calc((100vw/12)*0.7)] xl:left-[calc((100vw/12)*1.7)] p-0 !important;
 }
 
 .swiper-button-prev:after,
 .swiper-button-next:after {
-  @apply text-sm font-extrabold text-black xl:text-white !important;
+  @apply text-xl font-extrabold text-white !important;
 }
 
 .swiper-pagination-bullet {
-  @apply top-0 m-1 w-2 h-2 xl:w-4 xl:h-4 rounded-xl opacity-70 bg-white !important;
+  @apply top-0 m-1 w-2 h-2 lg:w-4 lg:h-4 rounded-xl opacity-70 bg-white !important;
 }
 
 .swiper-pagination-bullet-active {
-  @apply m-1 w-9 xl:w-16 opacity-95 rounded-xl bg-white !important;
+  @apply m-1 w-9 lg:w-16 opacity-95 rounded-xl bg-white !important;
 }
