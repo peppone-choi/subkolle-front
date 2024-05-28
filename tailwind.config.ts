@@ -8,12 +8,12 @@ const config: Config = {
   ],
   screens: {
     // 아래의 값들은 min-width이다.
-    mobile: '320px',
+    mobile: '425px',
     sm: '640px',
     md: '768px',
     lg: '1024px',
-    xl: '1280px',
-    '2xl': '1536px',
+    xl: '1440px',
+    '2xl': '2560px',
   },
   theme: {
     extend: {

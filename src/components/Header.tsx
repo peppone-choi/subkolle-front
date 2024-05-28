@@ -20,11 +20,11 @@ const Header = async () => {
 
   return (
     <>
-      <div className="flex w-screen justify-center h-28 xl:h-16 bg-slate-700">
-        <div className="hidden xl:flex justify-between items-center w-9/12">
+      <div className="flex w-screen justify-center h-24 md:h-16 bg-slate-700">
+        <div className="w-screen hidden lg:flex lg:justify-between items-center xl:w-11/12 2xl:w-9/12">
           <HeaderDesktop menus={menuData} />
         </div>
-        <div className="flex w-screen xl:hidden">
+        <div className="flex w-screen lg:hidden">
           <HeaderMobile menus={menuData} />
         </div>
       </div>

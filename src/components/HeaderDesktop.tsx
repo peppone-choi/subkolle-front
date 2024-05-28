@@ -9,12 +9,12 @@ const HeaderDesktop = ({ menus }: HeaderMenuProps) => {
     <>
       <div className="h-16 flex items-center">
         <Logo isLogoBig={true} />
-        <div className="ml-8">
+        <div className="ml-8 lg:ml-4">
           <HeaderMenus menus={menus} />
         </div>
       </div>
 
-      <div className="hidden xl:flex ml-2 h-16 items-center">
+      <div className="hidden lg:flex ml-2 h-16 items-center">
         <div className="flex items-center space-x-6">
           <div>
             <SearchInput />
