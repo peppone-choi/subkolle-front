@@ -16,8 +16,10 @@ export default async function Home() {
     <main className="w-screen justify-center">
       <Carousel data={data} />
       <div className="flex justify-center">
-        <div className="w-11/12 xl:w-9/12 p-2 xl:p-8">
-          <p>This is Mainpage ;)</p>
+        <div className="w-11/12 xl:w-9/12 p-2 xl:p-8 flex justify-center">
+          <div className="rounded-lg bg-slate-300 w-full h-48 shadow-xl">
+            <h1 className="m-8 text-2xl font-bold">Under Construction :)</h1>
+          </div>
         </div>
       </div>
     </main>

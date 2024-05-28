@@ -4,6 +4,10 @@
 
 /* CUSTOM CSS FOR CAROUSEL*/
 
+body {
+  overflow-x: hidden;
+}
+
 .swiper {
   @apply flex items-center justify-center h-44 lg:h-[30rem] !important;
 }

@@ -7,13 +7,13 @@ import HeaderMenus, { HeaderMenuProps } from './HeaderMenus';
 const HeaderMobile = ({ menus }: HeaderMenuProps) => {
   return (
     <>
-      <div className="flex w-full h-16 ml-1 justify-between items-center">
+      <div className="flex w-full h-16 ml-1 justify-between space-x-3 sm:space-x-32 items-center">
         <Logo isLogoBig={false} />
         <HeaderMenus menus={menus} />
         <AvatarSmall />
       </div>
 
-      <div className="absolute w-full top-16">
+      <div className="absolute left-0 w-full top-16">
         <SearchInput />
       </div>
     </>

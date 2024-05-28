@@ -35,8 +35,8 @@ const Carousel = ({ data }: CarouselData) => {
       touchRatio={0}
       modules={[Pagination, Navigation, Autoplay]}>
       {data?.map((carousel: CarouselProps) => (
-        <Link href={carousel.linkTo} key={carousel.order}>
-          <SwiperSlide>
+        <SwiperSlide key={carousel.order}>
+          <Link href={carousel.linkTo} key={carousel.order}>
             <div
               className="h-44 lg:h-[30rem] bg-cover bg-center bg-no-repeat flex items-center justify-center relative"
               style={{
@@ -54,8 +54,8 @@ const Carousel = ({ data }: CarouselData) => {
                 </div>
               </div>
             </div>
-          </SwiperSlide>
-        </Link>
+          </Link>
+        </SwiperSlide>
       ))}
     </Swiper>
   );
