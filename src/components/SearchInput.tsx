@@ -2,7 +2,7 @@ import React from 'react';
 
 const SearchInput = () => {
   return (
-    <form action="" className="relative">
+    <form action="">
       <input
         type="text"
         className="flex h-8 md:w-64 md:p-4 md:rounded-md w-full md:bg-slate-600 border-2 border-slate-600 p-2"

@@ -49,9 +49,9 @@ const Carousel = ({ data }: CarouselData) => {
                 <h1 className="text-2xl md:text-4xl lg:text-8xl font-extrabold leading-normal lg:leading-relaxed text-white">
                   {carousel.title}
                 </h1>
-                <div className="mt-1 md:mt-2 lg:mt-4 text-sm md:text-base lg:text-4xl ml-0.5 md:ml-1 lg:ml-2 text-white">
+                <p className="mt-1 md:mt-2 lg:mt-4 text-sm md:text-base lg:text-4xl ml-0.5 md:ml-1 lg:ml-2 text-white">
                   {carousel.description}
-                </div>
+                </p>
               </div>
             </div>
           </Link>
