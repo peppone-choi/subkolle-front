@@ -14,7 +14,7 @@ export interface HeaderMenuType {
 const HeaderMenus = ({ menus }: HeaderMenuProps) => {
   return (
     <>
-      <div className="flex text-white font-semibold xl:ml-6 space-x-3 xl:space-x-6 ml-0 ">
+      <div className="flex text-white font-semibold md:space-x-16 lg:space-x-3 xl:ml-6 space-x-3 xl:space-x-6 ml-0 ">
         {menus?.map(menu => {
           return (
             <Link href={menu.linkTo} key={menu.id}>
@@ -22,7 +22,7 @@ const HeaderMenus = ({ menus }: HeaderMenuProps) => {
                 <p className="text-4xl mr-2">
                   <CustomIcon type={menu.iconType} name={menu.icon} />
                 </p>{' '}
-                <p className="mr-2 text-lg truncate md:hidden">{menu.text}</p>
+                <p className="mr-2 text-lg truncate hidden lg:flex">{menu.text}</p>
               </div>
             </Link>
           );
