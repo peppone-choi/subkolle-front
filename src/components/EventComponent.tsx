@@ -1,8 +1,9 @@
 import React from 'react';
 import Badge from './Badge';
-import { eventTagList } from '@/config/eventTagList';
+import { eventStateList, eventTagList } from '@/config/eventTagList';
 
 type EventComponentProps = {
+  id: string;
   headerImagePath: string;
   title: string;
   tags: string[];
@@ -10,9 +11,14 @@ type EventComponentProps = {
   endDate: string | null;
   location: string;
   keywords: string[];
+  isLongTimeEvent: boolean;
+  state: string;
+  isOverNight: boolean;
+  handleEventIdChange: (eventID: string) => void;
 };
 
 const EventComponent = ({
+  id,
   headerImagePath,
   title,
   tags,
@@ -20,9 +26,17 @@ const EventComponent = ({
   endDate,
   location,
   keywords,
+  isLongTimeEvent,
+  state,
+  isOverNight,
+  handleEventIdChange,
 }: EventComponentProps) => {
   return (
-    <div className="block w-40 h-40 lg:w-72 lg:h-80 bg-white shadow-2xl rounded-lg">
+    <div
+      onClick={() => {
+        handleEventIdChange(id);
+      }}
+      className="block w-40 h-40 lg:w-72 lg:h-80 bg-white shadow-2xl rounded-lg">
       <div
         className="h-14 lg:h-1/2 w-full rounded-t-lg bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: `url(${headerImagePath})` }}></div>
@@ -38,6 +52,15 @@ const EventComponent = ({
               />
             );
           })}
+          {isLongTimeEvent ? <Badge name="장기행사" color="rgb(238, 224, 218)" textColor="rgb(68, 42, 30)" /> : null}
+          {
+            <Badge
+              name={eventStateList.get(state as string)?.text as string}
+              color={eventStateList.get(state as string)?.color as string}
+              textColor={eventStateList.get(state as string)?.textColor as string}
+            />
+          }
+          {isOverNight ? <Badge name="밤샘" color="rgb(238, 224, 218)" textColor="rgb(68, 42, 30)" /> : null}
         </p>
         <p className="text-xs mb-1">
           {startDate} {endDate ? `-> ${endDate}` : null}

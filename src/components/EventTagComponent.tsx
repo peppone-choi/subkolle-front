@@ -5,11 +5,12 @@ import EventComponent from './EventComponent';
 import { eventTagList } from '@/config/eventTagList';
 
 interface EventTagComponentProps {
+  handleEventIdChange: (eventID: string) => void;
   keyString: string;
   name: object;
 }
 
-const EventTagComponent = ({ keyString }: EventTagComponentProps) => {
+const EventTagComponent = ({ handleEventIdChange, keyString }: EventTagComponentProps) => {
   const fetchEventData = async (key: string) => {
     try {
       const response = await fetch(`http://localhost:3000/api/event/tags/${key}`, { cache: 'reload' });
@@ -59,7 +60,9 @@ const EventTagComponent = ({ keyString }: EventTagComponentProps) => {
         className={`grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-y-5 place-items-center ${!isViewed && 'hidden'}`}>
         {eventData?.map((data: any) => (
           <EventComponent
-            key={data.id}
+            id={data.shortcut}
+            handleEventIdChange={handleEventIdChange}
+            key={data.shortcut}
             headerImagePath={data.headerImage}
             title={data.title}
             tags={data.tag}
@@ -83,6 +86,9 @@ const EventTagComponent = ({ keyString }: EventTagComponentProps) => {
             }
             location={data.location}
             keywords={data.genreAndKeyword}
+            isLongTimeEvent={data.isLongTimeEvent}
+            state={data.state}
+            isOverNight={data.isOverNight}
           />
         ))}
       </div>

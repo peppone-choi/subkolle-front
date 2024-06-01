@@ -12,7 +12,7 @@ const Badge = ({ name, color, textColor }: BadgeProps) => {
   return (
     <>
       <span
-        className="text-xs rounded-lg p-0.5 px-1.5 m-1"
+        className="text-xs rounded-md p-0.5 px-1.5 m-1"
         style={{
           backgroundColor: color as string,
           color: textColor as string,

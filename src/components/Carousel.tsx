@@ -8,7 +8,7 @@ import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import { Autoplay, Navigation, Pagination } from 'swiper/modules';
 interface CarouselData {
-  data: CarouselProps[];
+  data: CarouselProps[] | null;
 }
 
 interface CarouselProps {

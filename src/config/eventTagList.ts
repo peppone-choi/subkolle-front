@@ -7,3 +7,11 @@ export const eventTagList = new Map([
   ['ONLINE', { text: '온라인', color: 'rgb(250, 222, 201)', textColor: 'rgb(73, 41, 14)' }],
   ['ETC', { text: '기타', color: 'rgb(245, 224, 233)', textColor: 'rgb(76, 35, 55)' }],
 ]);
+
+export const eventStateList = new Map([
+  ['WILL_UPDATE', { text: '추가 예정', color: 'gray', textColor: 'white' }],
+  ['BEFORE_PROCEEDING', { text: '진행 전', color: 'orange', textColor: 'black' }],
+  ['PROCEEDING', { text: '진행중', color: 'green', textColor: 'white' }],
+  ['END', { text: '종료', color: 'gray', textColor: 'white' }],
+  ['CANCEL', { text: '취소', color: 'gray', textColor: 'white' }],
+]);
