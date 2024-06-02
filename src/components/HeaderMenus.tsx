@@ -1,16 +1,8 @@
 import Link from 'next/link';
 import React from 'react';
 import CustomIcon from './CustomIcon';
-export interface HeaderMenuProps {
-  menus: HeaderMenuType[] | null;
-}
-export interface HeaderMenuType {
-  id: number;
-  icon: string;
-  iconType: string;
-  text: string;
-  linkTo: string;
-}
+import { HeaderMenuProps } from '@/types/types';
+
 const HeaderMenus = ({ menus }: HeaderMenuProps) => {
   return (
     <>

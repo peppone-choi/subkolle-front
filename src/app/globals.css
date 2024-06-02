@@ -40,3 +40,25 @@ body {
 .swiper-pagination-bullet-active {
   @apply m-1 w-9 lg:w-16 opacity-95 rounded-xl bg-white !important;
 }
+
+/* CUSTOM CSS FOR SCROLLBAR */
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}

@@ -1,12 +1,7 @@
+import { BadgeProps } from '@/types/types';
 import React from 'react';
 import css from 'styled-jsx/css';
 import tw from 'twin.macro';
-
-interface BadgeProps {
-  name: string;
-  color: string;
-  textColor: string;
-}
 
 const Badge = ({ name, color, textColor }: BadgeProps) => {
   return (

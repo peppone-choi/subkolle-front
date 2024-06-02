@@ -2,7 +2,8 @@ import React from 'react';
 import AvatarSmall from './AvatarSmall';
 import SearchInput from './SearchInput';
 import Logo from './Logo';
-import HeaderMenus, { HeaderMenuProps } from './HeaderMenus';
+import HeaderMenus from './HeaderMenus';
+import { HeaderMenuProps } from '@/types/types';
 
 const HeaderDesktop = ({ menus }: HeaderMenuProps) => {
   return (

@@ -7,17 +7,7 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import { Autoplay, Navigation, Pagination } from 'swiper/modules';
-interface CarouselData {
-  data: CarouselProps[] | null;
-}
-
-interface CarouselProps {
-  order: number;
-  title: string;
-  description: string;
-  imageUrl: string;
-  linkTo: string;
-}
+import { CarouselData, CarouselProps } from '@/types/types';
 
 const Carousel = ({ data }: CarouselData) => {
   return (

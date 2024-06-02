@@ -1,9 +1,6 @@
+import { LogoProps } from '@/types/types';
 import Link from 'next/link';
 import React from 'react';
-
-type LogoProps = {
-  isLogoBig: boolean;
-};
 
 const Logo = ({ isLogoBig }: LogoProps) => {
   return (

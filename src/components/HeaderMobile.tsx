@@ -2,7 +2,8 @@ import React from 'react';
 import Logo from './Logo';
 import AvatarSmall from './AvatarSmall';
 import SearchInput from './SearchInput';
-import HeaderMenus, { HeaderMenuProps } from './HeaderMenus';
+import HeaderMenus from './HeaderMenus';
+import { HeaderMenuProps } from '@/types/types';
 
 const HeaderMobile = ({ menus }: HeaderMenuProps) => {
   return (

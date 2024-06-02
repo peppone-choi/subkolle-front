@@ -3,12 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import EventComponent from './EventComponent';
 import { eventTagList } from '@/config/eventTagList';
-
-interface EventTagComponentProps {
-  handleEventIdChange: (eventID: string) => void;
-  keyString: string;
-  name: object;
-}
+import { EventTagComponentProps } from '@/types/types';
 
 const EventTagComponent = ({ handleEventIdChange, keyString }: EventTagComponentProps) => {
   const fetchEventData = async (key: string) => {
@@ -58,39 +53,43 @@ const EventTagComponent = ({ handleEventIdChange, keyString }: EventTagComponent
       </h1>
       <div
         className={`grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-y-5 place-items-center ${!isViewed && 'hidden'}`}>
-        {eventData?.map((data: any) => (
-          <EventComponent
-            id={data.shortcut}
-            handleEventIdChange={handleEventIdChange}
-            key={data.shortcut}
-            headerImagePath={data.headerImage}
-            title={data.title}
-            tags={data.tag}
-            startDate={
-              data.startTime.split('T')[0].split('-')[0] +
-              '년 ' +
-              data.startTime.split('T')[0].split('-')[1] +
-              '월 ' +
-              data.startTime.split('T')[0].split('-')[2] +
-              '일'
-            }
-            endDate={
-              data.startTime.split('T')[0] === data.endTime.split('T')[0]
-                ? null
-                : data.endTime.split('T')[0].split('-')[0] +
-                  '년 ' +
-                  data.endTime.split('T')[0].split('-')[1] +
-                  '월 ' +
-                  data.endTime.split('T')[0].split('-')[2] +
-                  '일'
-            }
-            location={data.location}
-            keywords={data.genreAndKeyword}
-            isLongTimeEvent={data.isLongTimeEvent}
-            state={data.state}
-            isOverNight={data.isOverNight}
-          />
-        ))}
+        {eventData ? (
+          eventData.map((data: any) => (
+            <EventComponent
+              id={data.shortcut}
+              handleEventIdChange={handleEventIdChange}
+              key={data.shortcut}
+              headerImagePath={data.headerImage}
+              title={data.title}
+              tags={data.tag}
+              startDate={
+                data.startTime.split('T')[0].split('-')[0] +
+                '년 ' +
+                data.startTime.split('T')[0].split('-')[1] +
+                '월 ' +
+                data.startTime.split('T')[0].split('-')[2] +
+                '일'
+              }
+              endDate={
+                data.startTime.split('T')[0] === data.endTime.split('T')[0]
+                  ? null
+                  : data.endTime.split('T')[0].split('-')[0] +
+                    '년 ' +
+                    data.endTime.split('T')[0].split('-')[1] +
+                    '월 ' +
+                    data.endTime.split('T')[0].split('-')[2] +
+                    '일'
+              }
+              location={data.location}
+              keywords={data.genreAndKeyword}
+              isLongTimeEvent={data.isLongTimeEvent}
+              state={data.state}
+              isOverNight={data.isOverNight}
+            />
+          ))
+        ) : (
+          <div>이벤트 데이터가 존재하지 않습니다.</div>
+        )}
       </div>
     </div>
   );

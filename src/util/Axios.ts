@@ -1,10 +1,5 @@
+import { OuterAxiosInstanceProp } from '@/types/types';
 import axios from 'axios';
-
-type OuterAxiosInstanceProp = {
-  baseUrl: string;
-  body: object | null;
-  isCredentials: boolean;
-};
 
 const OuterAxiosInstance = ({ baseUrl, body, isCredentials }: OuterAxiosInstanceProp) => {
   return axios.create({

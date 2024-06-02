@@ -1,21 +1,7 @@
 import React from 'react';
 import Badge from './Badge';
 import { eventStateList, eventTagList } from '@/config/eventTagList';
-
-type EventComponentProps = {
-  id: string;
-  headerImagePath: string;
-  title: string;
-  tags: string[];
-  startDate: string;
-  endDate: string | null;
-  location: string;
-  keywords: string[];
-  isLongTimeEvent: boolean;
-  state: string;
-  isOverNight: boolean;
-  handleEventIdChange: (eventID: string) => void;
-};
+import { EventComponentProps } from '@/types/types';
 
 const EventComponent = ({
   id,
