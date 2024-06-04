@@ -5,7 +5,7 @@ const SearchInput = () => {
     <form action="" className="relative">
       <input
         type="text"
-        className="flex h-8 md:w-64 border-b-2 border-slate-800 md:border-0 md:p-4 md:rounded-md w-full md:bg-white md:bg-opacity-30  p-2"
+        className="flex h-8 md:w-64 border-b-2 border-slate-800 md:border-0 md:p-4 md:rounded-md w-full md:bg-white md:bg-opacity-30 hover:bg-opacity-20 focus:bg-opacity-20 outline-none p-2"
         placeholder="검색"
       />
       <button
