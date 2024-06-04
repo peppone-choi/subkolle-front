@@ -4,6 +4,7 @@ import AvatarSmall from './AvatarSmall';
 import SearchInput from './SearchInput';
 import HeaderMenus from './HeaderMenus';
 import { HeaderMenuProps } from '@/types/types';
+import LoginButton from './LoginButton';
 
 const HeaderMobile = ({ menus }: HeaderMenuProps) => {
   return (
@@ -11,7 +12,8 @@ const HeaderMobile = ({ menus }: HeaderMenuProps) => {
       <div className="flex w-full h-16 ml-1 justify-between space-x-3 sm:space-x-32 items-center">
         <Logo isLogoBig={false} />
         <HeaderMenus menus={menus} />
-        <AvatarSmall />
+        <LoginButton />
+        {/* <AvatarSmall /> */}
       </div>
 
       <div className="absolute left-0 w-full top-16">

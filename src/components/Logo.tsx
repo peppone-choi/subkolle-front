@@ -9,7 +9,7 @@ const Logo = ({ isLogoBig }: LogoProps) => {
         <img
           src={`https://placehold.co/${isLogoBig ? `150x48` : `48x48`}?font=roboto`}
           alt="SUBKORE LOGO"
-          className="xl:ml-4 2xl:mr-4 min-h-12"
+          className="ml-2 xl:ml-4 2xl:mr-4 min-h-12"
         />
       </Link>
     </div>

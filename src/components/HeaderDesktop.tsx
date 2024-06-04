@@ -4,6 +4,7 @@ import SearchInput from './SearchInput';
 import Logo from './Logo';
 import HeaderMenus from './HeaderMenus';
 import { HeaderMenuProps } from '@/types/types';
+import LoginButton from './LoginButton';
 
 const HeaderDesktop = ({ menus }: HeaderMenuProps) => {
   return (
@@ -21,7 +22,8 @@ const HeaderDesktop = ({ menus }: HeaderMenuProps) => {
             <SearchInput />
           </div>
           <div className="">
-            <AvatarSmall />
+            <LoginButton />
+            {/* <AvatarSmall /> */}
           </div>
         </div>
       </div>

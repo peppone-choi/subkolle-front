@@ -1,7 +1,4 @@
 import React from 'react';
-import SearchInput from './SearchInput';
-import AvatarSmall from './AvatarSmall';
-import Logo from './Logo';
 import HeaderMobile from './HeaderMobile';
 import HeaderDesktop from './HeaderDesktop';
 import { HeaderMenuType } from '@/types/types';

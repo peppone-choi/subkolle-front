@@ -44,18 +44,17 @@ body {
 /* CUSTOM CSS FOR SCROLLBAR */
 /* width */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 7px;
 }
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: transparent;
+  background: #bbb;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
   background: #888;
-  border-radius: 10px;
 }
 
 /* Handle on hover */
