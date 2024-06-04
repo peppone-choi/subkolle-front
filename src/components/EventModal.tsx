@@ -113,7 +113,7 @@ const EventModal = ({ id, handleModalClose }: EventModalProps) => {
                   {eventData?.detail.price.map((price: { price: number; option: string }) => {
                     return (
                       <div>
-                        {price.price} ({price.option})
+                        {price.price}원 ({price.option})
                       </div>
                     );
                   })}
