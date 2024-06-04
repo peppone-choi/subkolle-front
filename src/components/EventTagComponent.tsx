@@ -4,32 +4,33 @@ import React, { useEffect, useState } from 'react';
 import EventComponent from './EventComponent';
 import { eventTagList } from '@/config/eventTagList';
 import { EventTagComponentProps } from '@/types/types';
+import { useQuery } from '@tanstack/react-query';
+
+const fetchEventData = async (key: string) => {
+  try {
+    const response = await fetch(`http://localhost:3000/api/event/tags/${key}`, { cache: 'reload' });
+    if (!response.ok) {
+      throw new Error('Failed to fetch event data');
+    }
+    return response.json();
+  } catch (error) {
+    console.error('Failed to fetch event data', error);
+  }
+};
 
 const EventTagComponent = ({ handleEventIdChange, keyString }: EventTagComponentProps) => {
-  const fetchEventData = async (key: string) => {
-    try {
-      const response = await fetch(`http://localhost:3000/api/event/tags/${key}`, { cache: 'reload' });
-      if (!response.ok) {
-        throw new Error('Failed to fetch event data');
-      }
-      return response.json();
-    } catch (error) {
-      console.error('Failed to fetch event data', error);
-    }
-  };
+  const {
+    isPending,
+    isError,
+    data: eventData,
+    error,
+  } = useQuery({
+    queryKey: ['event', keyString],
+    queryFn: () => fetchEventData(keyString),
+    staleTime: 1000 * 60 * 60,
+  });
 
-  const [isViewed, setIsViewed] = useState(false);
-  const [eventData, setEventData] = useState([]);
-  useEffect(() => {
-    async function fetchData() {
-      const data = await fetchEventData(keyString);
-      if (data) {
-        setIsViewed(true);
-      }
-      setEventData(data);
-    }
-    fetchData();
-  }, []);
+  const [isViewed, setIsViewed] = useState(true);
 
   const name = eventTagList.get(keyString)?.text;
   return (
@@ -53,7 +54,11 @@ const EventTagComponent = ({ handleEventIdChange, keyString }: EventTagComponent
       </h1>
       <div
         className={`grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-y-5 place-items-center ${!isViewed && 'hidden'}`}>
-        {eventData ? (
+        {isPending ? (
+          <></>
+        ) : isError ? (
+          <></>
+        ) : (
           eventData.map((data: any) => (
             <EventComponent
               id={data.shortcut}
@@ -87,8 +92,6 @@ const EventTagComponent = ({ handleEventIdChange, keyString }: EventTagComponent
               isOverNight={data.isOverNight}
             />
           ))
-        ) : (
-          <div>이벤트 데이터가 존재하지 않습니다.</div>
         )}
       </div>
     </div>
