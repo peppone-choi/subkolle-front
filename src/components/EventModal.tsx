@@ -5,6 +5,7 @@ import Badge from './Badge';
 import { eventStateList, eventTagList } from '@/config/eventTagList';
 import { EventDataTypes, EventModalProps } from '@/types/types';
 import { useQuery } from '@tanstack/react-query';
+import Image from 'next/image';
 
 const fetchEventData = async (id: string) => {
   const res = await fetch(`/api/event/${id}`);
@@ -32,23 +33,26 @@ const EventModal = ({ id, handleModalClose }: EventModalProps) => {
         <></>
       ) : (
         <>
-          <div
-            style={{
-              backgroundImage: `url(${eventData?.headerImage})`,
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-              backgroundRepeat: 'no-repeat',
-            }}
-            className="h-44 w-full rounded-t-lg">
-            <div className="w-full flex justify-end">
+          <div className="relative h-44 w-full rounded-t-lg">
+            <div className="w-full flex justify-end pr-2">
+              <div>
+                <Image
+                  src={eventData?.headerImage}
+                  alt={eventData?.title}
+                  className="rounded-t-lg"
+                  layout="fill"
+                  objectFit="cover"
+                  loading="lazy"
+                />
+              </div>
               <button
                 onClick={handleModalClose}
-                className="relative right-2 top-2 rounded-full text-white text-2xl font-light bg-black size-8 bg-opacity-30">
+                className="size-8 min-w-8 relative -right-full -translate-x-full top-2 rounded-full text-white text-2xl font-light bg-black bg-opacity-30">
                 X
               </button>
-            </div>
-            <div className="w-full flex items-end h-36">
-              <h1 className="text-2xl md:text-4xl text-white md:m-4 font-bold">{eventData?.title}</h1>
+              <div className="w-full flex items-end h-36">
+                <h1 className="text-2xl md:text-4xl text-white md:m-4 font-bold">{eventData?.title}</h1>
+              </div>
             </div>
           </div>
           <div className="text-sm break-all ml-2 mt-2 lg:m-4">
@@ -65,29 +69,31 @@ const EventModal = ({ id, handleModalClose }: EventModalProps) => {
                 </p>
               </div>
               <div className="flex">
-                <p className="w-28 md:w-40">유형/상태</p>
-                {eventData?.tag.map((tag: string) => {
-                  return (
+                <p className="min-w-28 md:min-w-40">유형/상태</p>
+                <div className="text-nowrap">
+                  {eventData?.tag.map((tag: string) => {
+                    return (
+                      <Badge
+                        name={eventTagList.get(tag)?.text as string}
+                        color={eventTagList.get(tag)?.color as string}
+                        textColor={eventTagList.get(tag)?.textColor as string}
+                      />
+                    );
+                  })}
+                  {
                     <Badge
-                      name={eventTagList.get(tag)?.text as string}
-                      color={eventTagList.get(tag)?.color as string}
-                      textColor={eventTagList.get(tag)?.textColor as string}
+                      name={eventStateList.get(eventData?.state as string)?.text as string}
+                      color={eventStateList.get(eventData?.state as string)?.color as string}
+                      textColor={eventStateList.get(eventData?.state as string)?.textColor as string}
                     />
-                  );
-                })}
-                {
-                  <Badge
-                    name={eventStateList.get(eventData?.state as string)?.text as string}
-                    color={eventStateList.get(eventData?.state as string)?.color as string}
-                    textColor={eventStateList.get(eventData?.state as string)?.textColor as string}
-                  />
-                }
-                {eventData?.isLongTimeEvent ? (
-                  <Badge name="장기행사" color="rgb(238, 224, 218)" textColor="rgb(68, 42, 30)" />
-                ) : null}
-                {eventData?.isOverNight ? (
-                  <Badge name="밤샘" color="rgb(238, 224, 218)" textColor="rgb(68, 42, 30)" />
-                ) : null}
+                  }
+                  {eventData?.isLongTimeEvent ? (
+                    <Badge name="장기행사" color="rgb(238, 224, 218)" textColor="rgb(68, 42, 30)" />
+                  ) : null}
+                  {eventData?.isOverNight ? (
+                    <Badge name="밤샘" color="rgb(238, 224, 218)" textColor="rgb(68, 42, 30)" />
+                  ) : null}
+                </div>
               </div>
               <div className="flex">
                 <p className="w-28 md:w-40">장소</p>

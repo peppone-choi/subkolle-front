@@ -8,7 +8,7 @@ import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import { Autoplay, Navigation, Pagination } from 'swiper/modules';
 import { CarouselData, CarouselProps } from '@/types/types';
-
+import Image from 'next/image';
 const Carousel = ({ data }: CarouselData) => {
   return (
     <Swiper
@@ -27,14 +27,16 @@ const Carousel = ({ data }: CarouselData) => {
       {data?.map((carousel: CarouselProps) => (
         <SwiperSlide key={carousel.order}>
           <Link href={carousel.linkTo} key={carousel.order}>
-            <div
-              className="h-44 lg:h-[30rem] bg-cover bg-center bg-no-repeat flex items-center justify-center relative"
-              style={{
-                backgroundImage: `url(${carousel.imageUrl})`,
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
-                backgroundRepeat: 'no-repeat',
-              }}>
+            <div className="h-44 lg:h-[30rem] flex items-center justify-center relative">
+              <Image
+                loader={() => carousel.imageUrl}
+                src={''}
+                alt={carousel.title}
+                className="object-cover object-center"
+                sizes="(max-width: 640px) 100vw, (max-width: 768px) 100vw, 100vw"
+                placeholder="blur"
+                loading="lazy"
+              />
               <div className="h-full relative flex w-11/12 lg:w-9/12 flex-col justify-center lg:-translate-y-16 px-10">
                 <h1 className="text-2xl md:text-4xl lg:text-8xl font-extrabold leading-normal lg:leading-relaxed text-white">
                   {carousel.title}

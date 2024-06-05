@@ -2,6 +2,7 @@ import React from 'react';
 import Badge from './Badge';
 import { eventStateList, eventTagList } from '@/config/eventTagList';
 import { EventComponentProps } from '@/types/types';
+import Image from 'next/image';
 
 const EventComponent = ({
   id,
@@ -22,10 +23,17 @@ const EventComponent = ({
       onClick={() => {
         handleEventIdChange(id);
       }}
-      className="block w-40 h-40 lg:w-72 lg:h-80 bg-white shadow-2xl rounded-lg">
-      <div
-        className="h-14 lg:h-1/2 w-full rounded-t-lg bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: `url(${headerImagePath})` }}></div>
+      className="w-40 h-40 lg:w-72 lg:h-80 bg-white shadow-2xl rounded-lg">
+      <div className="relative h-14 lg:h-1/2 w-full rounded-t-lg">
+        <Image
+          src={headerImagePath}
+          alt={title}
+          className="rounded-t-lg"
+          layout="fill"
+          objectFit="cover"
+          loading="lazy"
+        />
+      </div>
       <div className="p-2">
         <h1 className="font-bold text-lg mb-2 overflow-hidden whitespace-nowrap text-ellipsis break-all">{title}</h1>
         <p className="text-sm space-x-1 mb-2">

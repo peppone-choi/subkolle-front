@@ -4,7 +4,7 @@ import axios from 'axios';
 const OuterAxiosInstance = ({ baseUrl, body, isCredentials }: OuterAxiosInstanceProp) => {
   return axios.create({
     baseURL: baseUrl,
-    timeout: 1000,
+    timeout: 300,
     data: JSON.stringify(body),
     withCredentials: isCredentials,
   });
