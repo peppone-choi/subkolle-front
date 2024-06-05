@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import React, { useRef } from 'react';
+import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
@@ -9,8 +9,31 @@ import 'swiper/css/navigation';
 import { Autoplay, Navigation, Pagination } from 'swiper/modules';
 import { CarouselData, CarouselProps } from '@/types/types';
 import Image from 'next/image';
-const Carousel = ({ data }: CarouselData) => {
-  return (
+import { useQuery } from '@tanstack/react-query';
+
+const fetchCarousels = async () => {
+  return (await fetch('http://localhost:3000/api/carousel', { cache: 'no-cache' })).json();
+};
+
+const Carousel = () => {
+  const {
+    isLoading,
+    data: carouselData,
+    isError,
+    error,
+  } = useQuery({
+    queryKey: ['carousel'],
+    queryFn: fetchCarousels,
+  });
+  return isLoading ? (
+    <div>
+      <h1>Loading...</h1>
+    </div>
+  ) : isError ? (
+    <div>
+      <h1>캐러셀 데이터를 로딩 할 수 없습니다 : {error.message}</h1>
+    </div>
+  ) : (
     <Swiper
       centeredSlides={true} //가운데 정렬
       slidesPerView={1} //한 슬라이드에 보여줄 갯수
@@ -24,18 +47,17 @@ const Carousel = ({ data }: CarouselData) => {
       }} //pager여부
       touchRatio={0}
       modules={[Pagination, Navigation, Autoplay]}>
-      {data?.map((carousel: CarouselProps) => (
+      {carouselData?.map((carousel: CarouselProps) => (
         <SwiperSlide key={carousel.order}>
           <Link href={carousel.linkTo} key={carousel.order}>
             <div className="h-44 lg:h-[30rem] flex items-center justify-center relative">
               <Image
-                loader={() => carousel.imageUrl}
-                src={''}
+                src={carousel.imageUrl}
                 alt={carousel.title}
                 className="object-cover object-center"
                 sizes="(max-width: 640px) 100vw, (max-width: 768px) 100vw, 100vw"
-                placeholder="blur"
                 loading="lazy"
+                layout="fill"
               />
               <div className="h-full relative flex w-11/12 lg:w-9/12 flex-col justify-center lg:-translate-y-16 px-10">
                 <h1 className="text-2xl md:text-4xl lg:text-8xl font-extrabold leading-normal lg:leading-relaxed text-white">

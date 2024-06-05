@@ -27,7 +27,6 @@ const EventTagComponent = ({ handleEventIdChange, keyString }: EventTagComponent
   } = useQuery({
     queryKey: ['event', keyString],
     queryFn: () => fetchEventData(keyString),
-    staleTime: 1000 * 60 * 60,
   });
 
   const [isViewed, setIsViewed] = useState(true);

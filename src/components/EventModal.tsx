@@ -22,7 +22,6 @@ const EventModal = ({ id, handleModalClose }: EventModalProps) => {
   } = useQuery({
     queryKey: ['event', id],
     queryFn: () => fetchEventData(id),
-    staleTime: 1000 * 60 * 60,
   });
 
   return (
