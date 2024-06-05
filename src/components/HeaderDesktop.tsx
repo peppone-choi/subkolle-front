@@ -1,5 +1,4 @@
 import React from 'react';
-import AvatarSmall from './AvatarSmall';
 import SearchInput from './SearchInput';
 import Logo from './Logo';
 import HeaderMenus from './HeaderMenus';

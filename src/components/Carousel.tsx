@@ -7,12 +7,12 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import { Autoplay, Navigation, Pagination } from 'swiper/modules';
-import { CarouselData, CarouselProps } from '@/types/types';
+import { CarouselProps } from '@/types/types';
 import Image from 'next/image';
 import { useQuery } from '@tanstack/react-query';
 
 const fetchCarousels = async () => {
-  return (await fetch('http://localhost:3000/api/carousel', { cache: 'no-cache' })).json();
+  return (await fetch('http://localhost:3000/api/carousel')).json();
 };
 
 const Carousel = () => {
@@ -24,6 +24,7 @@ const Carousel = () => {
   } = useQuery({
     queryKey: ['carousel'],
     queryFn: fetchCarousels,
+    staleTime: 1000 * 60 * 60,
   });
   return isLoading ? (
     <div>
@@ -55,9 +56,12 @@ const Carousel = () => {
                 src={carousel.imageUrl}
                 alt={carousel.title}
                 className="object-cover object-center"
-                sizes="(max-width: 640px) 100vw, (max-width: 768px) 100vw, 100vw"
                 loading="lazy"
                 layout="fill"
+                typeof="image/avif"
+                sizes="(max-width: 768px) 100vw,
+              (max-width: 1200px) 50vw,
+              33vw"
               />
               <div className="h-full relative flex w-11/12 lg:w-9/12 flex-col justify-center lg:-translate-y-16 px-10">
                 <h1 className="text-2xl md:text-4xl lg:text-8xl font-extrabold leading-normal lg:leading-relaxed text-white">

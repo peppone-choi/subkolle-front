@@ -1,6 +1,5 @@
 import { BadgeProps } from '@/types/types';
 import React from 'react';
-import css from 'styled-jsx/css';
 
 const Badge = ({ name, color, textColor }: BadgeProps) => {
   return (

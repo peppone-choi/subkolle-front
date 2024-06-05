@@ -6,6 +6,7 @@ export async function GET() {
     headers: {
       'Content-Type': 'application/json',
     },
+    timeout: 300,
   });
   const data = await res.data;
   return NextResponse.json(data);

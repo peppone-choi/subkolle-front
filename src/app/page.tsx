@@ -1,11 +1,14 @@
 'use client';
 
-import Carousel from '@/components/Carousel';
 import EventTagComponent from '@/components/EventTagComponent';
 import { eventTagList } from '@/config/eventTagList';
-import { MouseEventHandler, useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import useModal from './hooks/useModal';
 import EventModal from '@/components/EventModal';
+import React from 'react';
+import dynamic from 'next/dynamic';
+
+const Carousel = dynamic(() => import('@/components/Carousel'), { ssr: true });
 
 export default function Home() {
   const { isModalOpen, openModal, closeModal } = useModal(false);

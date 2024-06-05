@@ -6,6 +6,7 @@ export async function GET() {
     headers: {
       'Content-Type': 'application/json',
     },
+    timeout: 300,
   });
   if (!res) {
     return NextResponse.json({ error: 'Failed to fetch data' }, { status: 500 });
