@@ -1,7 +1,11 @@
 'use client';
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 const LoginPage = () => {
+  const loginUser = useSelector((state: any) => state.login.user);
+  console.log(loginUser);
+
   return (
     <main className="w-screen justify-center">
       <div className="flex justify-center">

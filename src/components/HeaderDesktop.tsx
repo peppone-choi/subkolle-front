@@ -10,7 +10,6 @@ import AvatarSmall from './AvatarSmall';
 
 const HeaderDesktop = () => {
   const loginUser = useSelector((state: any) => state.login.user);
-
   return (
     <>
       <div className="h-16 flex items-center">

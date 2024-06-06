@@ -39,7 +39,7 @@ const EventTagComponent = ({ handleEventIdChange, keyString }: EventTagComponent
   const name = eventTagList.get(keyString)?.text;
   return (
     <div className="w-full mb-8">
-      <h1 className="ml-4 mb-4 flex text-2xl font-extrabold mb-2 items-center space-x-2">
+      <h1 className="ml-4 flex text-2xl font-extrabold mb-2 items-center space-x-2">
         <span
           className={`size-7 rounded-md shadow-lg flex justify-center items-center text-sm hover:cursor-pointer`}
           style={{

@@ -3,9 +3,9 @@ import { createSlice } from '@reduxjs/toolkit';
 const LoginSlice = createSlice({
   name: 'loginUser',
   initialState: {
-    user: null,
-    accessToken: null,
-    refreshToken: null,
+    user: '',
+    accessToken: '',
+    refreshToken: '',
   },
   reducers: {
     login(state, action) {
@@ -14,12 +14,12 @@ const LoginSlice = createSlice({
       state.refreshToken = action.payload.refreshToken;
     },
     logout(state) {
-      state.user = null;
-      state.accessToken = null;
-      state.refreshToken = null;
+      state.user = '';
+      state.accessToken = '';
+      state.refreshToken = '';
     },
   },
 });
 
 export const { login, logout } = LoginSlice.actions;
-export default LoginSlice;
+export default LoginSlice.reducer;
