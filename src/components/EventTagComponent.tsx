@@ -6,7 +6,7 @@ import { eventTagList } from '@/config/eventTagList';
 import { EventTagComponentProps } from '@/types/types';
 import { useQuery } from '@tanstack/react-query';
 import { Swiper } from 'swiper/react';
-import { A11y, Navigation, Pagination, Scrollbar } from 'swiper/modules';
+import { A11y } from 'swiper/modules';
 import { SwiperSlide } from 'swiper/react';
 
 import 'swiper/css';
@@ -56,31 +56,29 @@ const EventTagComponent = ({ handleEventIdChange, keyString }: EventTagComponent
           {name}
         </p>
       </h1>
-      <div className={`${!isViewed && 'hidden'}`}>
+      <div className={`w-screen ${!isViewed && 'hidden'}`}>
         <Swiper
           breakpoints={{
             768: {
               slidesPerView: 4,
               spaceBetween: 0,
-              centeredSlides: true,
-              centeredSlidesBounds: true,
             },
             1024: {
               slidesPerView: 3,
               spaceBetween: 0,
-              centeredSlides: true,
-              centeredSlidesBounds: true,
             },
-            1440: {
+            1510: {
               slidesPerView: 4,
               spaceBetween: 0,
-              centeredSlides: true,
-              centeredSlidesBounds: true,
+            },
+            1780: {
+              slidesPerView: 6,
+              spaceBetween: 0,
             },
           }}
           slidesPerView={3} //한 슬라이드에 보여줄 갯수
           spaceBetween={5} //슬라이드간 거리
-          centeredSlides={true}
+          loop={true}
           modules={[A11y]}>
           {isPending ? (
             <></>
