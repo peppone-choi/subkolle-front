@@ -6,7 +6,7 @@ import HeaderDesktop from './HeaderDesktop';
 import { useQuery } from '@tanstack/react-query';
 
 const fetchMenus = async () => {
-  return (await fetch('http://localhost:3000/api/menu', { cache: 'no-cache' })).json();
+  return (await fetch('http://localhost:3000/api/menu')).json();
 };
 
 const Header = () => {
