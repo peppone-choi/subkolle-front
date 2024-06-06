@@ -9,7 +9,7 @@ import { useSelector } from 'react-redux';
 import AvatarSmall from './AvatarSmall';
 
 const HeaderDesktop = () => {
-  const loginUser = useSelector((state: any) => state.login.user);
+  const loginUser = useSelector((state: any) => state.loginUser.user);
   return (
     <>
       <div className="h-16 flex items-center">

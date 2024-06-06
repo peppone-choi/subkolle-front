@@ -9,7 +9,7 @@ import LoginButton from './LoginButton';
 import { useSelector } from 'react-redux';
 
 const HeaderMobile = () => {
-  const loginUser = useSelector((state: any) => state.login.user);
+  const loginUser = useSelector((state: any) => state.loginUser.user);
   return (
     <>
       <div className="flex w-full h-16 ml-1 justify-between space-x-3 sm:space-x-32 items-center">

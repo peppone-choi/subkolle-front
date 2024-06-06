@@ -3,7 +3,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 const LoginPage = () => {
-  const loginUser = useSelector((state: any) => state.login.user);
+  const loginUser = useSelector((state: any) => state.loginUser.user);
   console.log(loginUser);
 
   return (
