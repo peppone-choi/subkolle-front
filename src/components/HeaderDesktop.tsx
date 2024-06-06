@@ -2,16 +2,15 @@ import React from 'react';
 import SearchInput from './SearchInput';
 import Logo from './Logo';
 import HeaderMenus from './HeaderMenus';
-import { HeaderMenuProps } from '@/types/types';
 import LoginButton from './LoginButton';
 
-const HeaderDesktop = ({ menus }: HeaderMenuProps) => {
+const HeaderDesktop = () => {
   return (
     <>
       <div className="h-16 flex items-center">
         <Logo isLogoBig={true} />
         <div className="ml-8 lg:ml-4">
-          <HeaderMenus menus={menus} />
+          <HeaderMenus />
         </div>
       </div>
 

@@ -34,28 +34,32 @@ const EventComponent = ({
           loading="lazy"
         />
       </div>
-      <div className="p-2">
-        <h1 className="font-bold text-lg mb-2 overflow-hidden whitespace-nowrap text-ellipsis break-all">{title}</h1>
-        <p className="text-sm space-x-1 mb-2">
-          {tags.map(tag => {
-            return (
+      <div className="p-1 lg:p-2">
+        <h1 className="font-bold lg:text-lg lg:mb-1 overflow-hidden whitespace-nowrap text-ellipsis break-all">
+          {title}
+        </h1>
+        <div className="max-lg:h-10 max-lg:overflow-y-clip mb-1 lg:mb-2">
+          <p className="text-sm lg:text-base lg:space-x-1">
+            {tags.map(tag => {
+              return (
+                <Badge
+                  name={eventTagList.get(tag)?.text as string}
+                  color={eventTagList.get(tag)?.color as string}
+                  textColor={eventTagList.get(tag)?.textColor as string}
+                />
+              );
+            })}
+            {isLongTimeEvent ? <Badge name="장기행사" color="rgb(238, 224, 218)" textColor="rgb(68, 42, 30)" /> : null}
+            {
               <Badge
-                name={eventTagList.get(tag)?.text as string}
-                color={eventTagList.get(tag)?.color as string}
-                textColor={eventTagList.get(tag)?.textColor as string}
+                name={eventStateList.get(state as string)?.text as string}
+                color={eventStateList.get(state as string)?.color as string}
+                textColor={eventStateList.get(state as string)?.textColor as string}
               />
-            );
-          })}
-          {isLongTimeEvent ? <Badge name="장기행사" color="rgb(238, 224, 218)" textColor="rgb(68, 42, 30)" /> : null}
-          {
-            <Badge
-              name={eventStateList.get(state as string)?.text as string}
-              color={eventStateList.get(state as string)?.color as string}
-              textColor={eventStateList.get(state as string)?.textColor as string}
-            />
-          }
-          {isOverNight ? <Badge name="밤샘" color="rgb(238, 224, 218)" textColor="rgb(68, 42, 30)" /> : null}
-        </p>
+            }
+            {isOverNight ? <Badge name="밤샘" color="rgb(238, 224, 218)" textColor="rgb(68, 42, 30)" /> : null}
+          </p>
+        </div>
         <p className="text-xs mb-1">
           {startDate} {endDate ? `-> ${endDate}` : null}
         </p>

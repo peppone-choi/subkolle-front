@@ -20,13 +20,11 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body className={inter.className}>
-        <div className="flex-row w-screen">
-          <ReactQueryProviders>
-            <Header />
-            <div className="flex justify-center">{children}</div>
-            <Footer />
-          </ReactQueryProviders>
-        </div>
+        <ReactQueryProviders>
+          <Header />
+          {children}
+          <Footer />
+        </ReactQueryProviders>
       </body>
     </html>
   );

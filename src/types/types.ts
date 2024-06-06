@@ -52,9 +52,6 @@ export interface EventTagComponentProps {
   name: object;
 }
 
-export interface HeaderMenuProps {
-  menus: HeaderMenuType[] | null;
-}
 export interface HeaderMenuType {
   id: number;
   icon: string;

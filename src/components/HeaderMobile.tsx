@@ -3,15 +3,14 @@ import Logo from './Logo';
 import AvatarSmall from './AvatarSmall';
 import SearchInput from './SearchInput';
 import HeaderMenus from './HeaderMenus';
-import { HeaderMenuProps } from '@/types/types';
 import LoginButton from './LoginButton';
 
-const HeaderMobile = ({ menus }: HeaderMenuProps) => {
+const HeaderMobile = () => {
   return (
     <>
       <div className="flex w-full h-16 ml-1 justify-between space-x-3 sm:space-x-32 items-center">
         <Logo isLogoBig={false} />
-        <HeaderMenus menus={menus} />
+        <HeaderMenus />
         <LoginButton />
         {/* <AvatarSmall /> */}
       </div>

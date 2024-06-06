@@ -5,6 +5,11 @@ import EventComponent from './EventComponent';
 import { eventTagList } from '@/config/eventTagList';
 import { EventTagComponentProps } from '@/types/types';
 import { useQuery } from '@tanstack/react-query';
+import { Swiper } from 'swiper/react';
+import { A11y, Navigation, Pagination, Scrollbar } from 'swiper/modules';
+import { SwiperSlide } from 'swiper/react';
+
+import 'swiper/css';
 
 const fetchEventData = async (key: string) => {
   try {
@@ -33,8 +38,8 @@ const EventTagComponent = ({ handleEventIdChange, keyString }: EventTagComponent
 
   const name = eventTagList.get(keyString)?.text;
   return (
-    <div className="m-4 mb-8">
-      <h1 className="flex text-2xl font-extrabold mb-2 items-center space-x-2">
+    <div className="w-full mb-8">
+      <h1 className="ml-4 mb-4 flex text-2xl font-extrabold mb-2 items-center space-x-2">
         <span
           className={`size-7 rounded-md shadow-lg flex justify-center items-center text-sm hover:cursor-pointer`}
           style={{
@@ -51,47 +56,74 @@ const EventTagComponent = ({ handleEventIdChange, keyString }: EventTagComponent
           {name}
         </p>
       </h1>
-      <div
-        className={`grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-y-5 place-items-center ${!isViewed && 'hidden'}`}>
-        {isPending ? (
-          <></>
-        ) : isError ? (
-          <></>
-        ) : (
-          eventData.map((data: any) => (
-            <EventComponent
-              id={data.shortcut}
-              handleEventIdChange={handleEventIdChange}
-              key={data.shortcut}
-              headerImagePath={data.headerImage}
-              title={data.title}
-              tags={data.tag}
-              startDate={
-                data.startTime.split('T')[0].split('-')[0] +
-                '년 ' +
-                data.startTime.split('T')[0].split('-')[1] +
-                '월 ' +
-                data.startTime.split('T')[0].split('-')[2] +
-                '일'
-              }
-              endDate={
-                data.startTime.split('T')[0] === data.endTime.split('T')[0]
-                  ? null
-                  : data.endTime.split('T')[0].split('-')[0] +
+      <div className={`${!isViewed && 'hidden'}`}>
+        <Swiper
+          breakpoints={{
+            768: {
+              slidesPerView: 4,
+              spaceBetween: 0,
+              centeredSlides: true,
+              centeredSlidesBounds: true,
+            },
+            1024: {
+              slidesPerView: 3,
+              spaceBetween: 0,
+              centeredSlides: true,
+              centeredSlidesBounds: true,
+            },
+            1440: {
+              slidesPerView: 4,
+              spaceBetween: 0,
+              centeredSlides: true,
+              centeredSlidesBounds: true,
+            },
+          }}
+          slidesPerView={3} //한 슬라이드에 보여줄 갯수
+          spaceBetween={5} //슬라이드간 거리
+          centeredSlides={true}
+          modules={[A11y]}>
+          {isPending ? (
+            <></>
+          ) : isError ? (
+            <></>
+          ) : (
+            eventData.map((data: any) => (
+              <SwiperSlide key={data} className="flex justify-center">
+                <EventComponent
+                  id={data.shortcut}
+                  handleEventIdChange={handleEventIdChange}
+                  key={data.shortcut}
+                  headerImagePath={data.headerImage}
+                  title={data.title}
+                  tags={data.tag}
+                  startDate={
+                    data.startTime.split('T')[0].split('-')[0] +
                     '년 ' +
-                    data.endTime.split('T')[0].split('-')[1] +
+                    data.startTime.split('T')[0].split('-')[1] +
                     '월 ' +
-                    data.endTime.split('T')[0].split('-')[2] +
+                    data.startTime.split('T')[0].split('-')[2] +
                     '일'
-              }
-              location={data.location}
-              keywords={data.genreAndKeyword}
-              isLongTimeEvent={data.isLongTimeEvent}
-              state={data.state}
-              isOverNight={data.isOverNight}
-            />
-          ))
-        )}
+                  }
+                  endDate={
+                    data.startTime.split('T')[0] === data.endTime.split('T')[0]
+                      ? null
+                      : data.endTime.split('T')[0].split('-')[0] +
+                        '년 ' +
+                        data.endTime.split('T')[0].split('-')[1] +
+                        '월 ' +
+                        data.endTime.split('T')[0].split('-')[2] +
+                        '일'
+                  }
+                  location={data.location}
+                  keywords={data.genreAndKeyword}
+                  isLongTimeEvent={data.isLongTimeEvent}
+                  state={data.state}
+                  isOverNight={data.isOverNight}
+                />
+              </SwiperSlide>
+            ))
+          )}
+        </Swiper>
       </div>
     </div>
   );
