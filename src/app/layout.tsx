@@ -4,6 +4,8 @@ import { Inter } from 'next/font/google';
 import './globals.css';
 import Footer from '@/components/Footer';
 import ReactQueryProviders from '@/util/react-query-provider';
+import store from '@/store/store';
+import ReduxProvider from '@/store/provider';
 const Header = React.lazy(() => import('@/components/Header'));
 const inter = Inter({ subsets: ['latin'] });
 
@@ -20,11 +22,13 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body className={inter.className}>
-        <ReactQueryProviders>
-          <Header />
-          {children}
-          <Footer />
-        </ReactQueryProviders>
+        <ReduxProvider>
+          <ReactQueryProviders>
+            <Header />
+            {children}
+            <Footer />
+          </ReactQueryProviders>
+        </ReduxProvider>
       </body>
     </html>
   );

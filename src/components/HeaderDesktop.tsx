@@ -1,10 +1,16 @@
+'use client';
+
 import React from 'react';
 import SearchInput from './SearchInput';
 import Logo from './Logo';
 import HeaderMenus from './HeaderMenus';
 import LoginButton from './LoginButton';
+import { useDispatch, useSelector } from 'react-redux';
+import AvatarSmall from './AvatarSmall';
 
 const HeaderDesktop = () => {
+  const loginUser = useSelector((state: any) => state.login.user);
+
   return (
     <>
       <div className="h-16 flex items-center">
@@ -19,10 +25,7 @@ const HeaderDesktop = () => {
           <div>
             <SearchInput />
           </div>
-          <div className="">
-            <LoginButton />
-            {/* <AvatarSmall /> */}
-          </div>
+          <div className="">{loginUser ? <AvatarSmall /> : <LoginButton />}</div>
         </div>
       </div>
     </>
