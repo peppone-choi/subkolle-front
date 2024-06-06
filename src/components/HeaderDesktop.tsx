@@ -5,7 +5,7 @@ import SearchInput from './SearchInput';
 import Logo from './Logo';
 import HeaderMenus from './HeaderMenus';
 import LoginButton from './LoginButton';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import AvatarSmall from './AvatarSmall';
 
 const HeaderDesktop = () => {
