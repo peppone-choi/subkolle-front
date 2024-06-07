@@ -23,7 +23,7 @@ const fetchEventData = async (key: string) => {
   }
 };
 
-const EventTagComponent = ({ handleEventIdChange, keyString }: EventTagComponentProps) => {
+const EventTagComponent = ({ keyString }: EventTagComponentProps) => {
   const {
     isPending,
     isError,
@@ -95,7 +95,6 @@ const EventTagComponent = ({ handleEventIdChange, keyString }: EventTagComponent
               <SwiperSlide key={data} className="flex justify-center">
                 <EventComponent
                   id={data.shortcut}
-                  handleEventIdChange={handleEventIdChange}
                   key={data.shortcut}
                   headerImagePath={data.headerImage}
                   title={data.title}

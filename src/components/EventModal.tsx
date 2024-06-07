@@ -1,9 +1,13 @@
+'use client';
+
 import React from 'react';
 import Badge from './Badge';
 import { eventStateList, eventTagList } from '@/config/eventTagList';
 import { EventModalProps } from '@/types/types';
 import { useQuery } from '@tanstack/react-query';
 import Image from 'next/image';
+import { useDispatch } from 'react-redux';
+import { modalClose, resetEventModalItem } from '@/store/eventModalItem';
 
 const fetchEventData = async (id: string) => {
   const res = await fetch(`/api/event/${id}`);
@@ -11,7 +15,7 @@ const fetchEventData = async (id: string) => {
   return data;
 };
 
-const EventModal = ({ id, handleModalClose }: EventModalProps) => {
+const EventModal = ({ id }: EventModalProps) => {
   const {
     isPending,
     isError,
@@ -21,6 +25,13 @@ const EventModal = ({ id, handleModalClose }: EventModalProps) => {
     queryKey: ['event', id],
     queryFn: () => fetchEventData(id),
   });
+
+  const dispatch = useDispatch();
+
+  const handleModalClose = () => {
+    dispatch(modalClose());
+    dispatch(resetEventModalItem());
+  };
 
   return (
     <div className="max-h-[32rem] w-full rounded-lg bg-white">

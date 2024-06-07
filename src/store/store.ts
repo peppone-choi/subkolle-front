@@ -2,8 +2,10 @@ import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import LoginSlice from './login';
 import storage from 'redux-persist/lib/storage';
 import { persistReducer } from 'redux-persist';
+import eventModalItemSlice from './eventModalItem';
 const combinedReducer = combineReducers({
   loginUser: LoginSlice,
+  eventModalItem: eventModalItemSlice,
 });
 
 const persistConfig = {

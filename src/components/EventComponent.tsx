@@ -1,8 +1,12 @@
+'use client';
+
 import React from 'react';
 import Badge from './Badge';
 import { eventStateList, eventTagList } from '@/config/eventTagList';
 import { EventComponentProps } from '@/types/types';
 import Image from 'next/image';
+import { useDispatch } from 'react-redux';
+import { modalOpen, setEventModalItem } from '@/store/eventModalItem';
 
 const EventComponent = ({
   id,
@@ -16,14 +20,20 @@ const EventComponent = ({
   isLongTimeEvent,
   state,
   isOverNight,
-  handleEventIdChange,
 }: EventComponentProps) => {
+  const dispatch = useDispatch();
+
+  const handleEventIdChange = (id: string) => {
+    dispatch(modalOpen());
+    dispatch(setEventModalItem(id));
+  };
+
   return (
     <div
       onClick={() => {
         handleEventIdChange(id);
       }}
-      className="w-40 h-40 lg:w-72 lg:h-80 bg-white shadow-2xl rounded-lg">
+      className="hover:cursor-pointer w-40 h-40 lg:w-72 lg:h-80 bg-white shadow-2xl rounded-lg">
       <div className="relative h-14 lg:h-1/2 w-full rounded-t-lg">
         <Image
           src={headerImagePath}

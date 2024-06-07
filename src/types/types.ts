@@ -62,7 +62,6 @@ export interface EventDataTypes {
 }
 
 export interface EventTagComponentProps {
-  handleEventIdChange: (eventID: string) => void;
   keyString: string;
   name: object;
 }
@@ -87,12 +86,10 @@ export interface EventComponentProps {
   isLongTimeEvent: boolean;
   state: string;
   isOverNight: boolean;
-  handleEventIdChange: (eventID: string) => void;
 }
 
 export type EventModalProps = {
   id: string;
-  handleModalClose: () => void;
 };
 
 export type LogoProps = {
