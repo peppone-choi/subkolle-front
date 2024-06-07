@@ -1,3 +1,18 @@
+export interface AuthState {
+  user: User;
+  accessToken: string;
+  refreshToken: string;
+}
+
+export interface User {
+  id: number;
+  uuid: string;
+  email: string;
+  nickname: string;
+  profileImage: string;
+  role: string[];
+}
+
 export interface BadgeProps {
   name: string;
   color: string;

@@ -1,12 +1,22 @@
+import { AuthState } from '@/types/types';
 import { createSlice } from '@reduxjs/toolkit';
+
+const initialState: AuthState = {
+  user: {
+    id: -1,
+    uuid: '',
+    email: '',
+    nickname: '',
+    profileImage: '',
+    role: [],
+  },
+  accessToken: '',
+  refreshToken: '',
+};
 
 const LoginSlice = createSlice({
   name: 'loginUser',
-  initialState: {
-    user: '',
-    accessToken: '',
-    refreshToken: '',
-  },
+  initialState,
   reducers: {
     login(state, action) {
       state.user = action.payload.user;
@@ -14,9 +24,9 @@ const LoginSlice = createSlice({
       state.refreshToken = action.payload.refreshToken;
     },
     logout(state) {
-      state.user = '';
-      state.accessToken = '';
-      state.refreshToken = '';
+      state.user = initialState.user;
+      state.accessToken = initialState.accessToken;
+      state.refreshToken = initialState.refreshToken;
     },
   },
 });
