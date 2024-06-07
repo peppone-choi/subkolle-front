@@ -9,8 +9,8 @@ const nextConfig = {
         hostname: 'placehold.co',
       },
     ],
+    unoptimized: true,
   },
-  swcMinify: true,
 };
 
 export default nextConfig;

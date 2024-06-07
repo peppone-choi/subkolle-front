@@ -12,7 +12,7 @@ import Image from 'next/image';
 import { useQuery } from '@tanstack/react-query';
 
 const fetchCarousels = async () => {
-  return (await fetch('http://localhost:3000/api/carousel')).json();
+  return (await fetch('http://localhost:3000/api/carousel', { cache: 'reload' })).json();
 };
 
 const Carousel = () => {
@@ -24,7 +24,6 @@ const Carousel = () => {
   } = useQuery({
     queryKey: ['carousel'],
     queryFn: fetchCarousels,
-    staleTime: 1000 * 60 * 60,
   });
   return isLoading ? (
     <div>
@@ -51,17 +50,16 @@ const Carousel = () => {
       {carouselData?.map((carousel: CarouselProps) => (
         <SwiperSlide key={carousel.order}>
           <Link href={carousel.linkTo} key={carousel.order}>
-            <div className="h-44 lg:h-[30rem] flex items-center justify-center relative">
+            <div className="h-44 lg:h-[30rem] w-full flex items-center justify-center relative">
               <Image
                 src={carousel.imageUrl}
                 alt={carousel.title}
                 className="object-cover object-center"
                 loading="lazy"
                 layout="fill"
+                unoptimized
                 typeof="image/avif"
-                sizes="(max-width: 768px) 100vw,
-              (max-width: 1200px) 50vw,
-              33vw"
+                quality={100}
               />
               <div className="h-full relative flex w-11/12 lg:w-9/12 flex-col justify-center lg:-translate-y-16 px-10">
                 <h1 className="text-2xl md:text-4xl lg:text-8xl font-extrabold leading-normal lg:leading-relaxed text-white">
