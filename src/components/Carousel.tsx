@@ -1,3 +1,5 @@
+'use client';
+
 import Link from 'next/link';
 import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -10,11 +12,7 @@ import Image from 'next/image';
 import { useQuery } from '@tanstack/react-query';
 
 const fetchCarousels = async () => {
-  try {
-    return (await fetch('http://localhost:3000/api/carousel')).json();
-  } catch (error) {
-    throw new Error('캐러셀 데이터를 불러오지 못하였습니다.');
-  }
+  return (await fetch('http://localhost:3000/api/carousel')).json();
 };
 
 const Carousel = () => {

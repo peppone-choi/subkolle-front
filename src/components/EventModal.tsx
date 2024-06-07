@@ -10,9 +10,13 @@ import { useDispatch } from 'react-redux';
 import { modalClose, resetEventModalItem } from '@/store/eventModalItem';
 
 const fetchEventData = async (id: string) => {
-  const res = await fetch(`/api/event/${id}`);
-  const data = await res.json();
-  return data;
+  try {
+    const res = await fetch(`/api/event/${id}`);
+    const data = await res.json();
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 const EventModal = ({ id }: EventModalProps) => {

@@ -24,23 +24,12 @@ const fetchEventData = async (key: string) => {
 };
 
 const EventTagComponent = ({ keyString }: EventTagComponentProps) => {
-  const {
-    isPending,
-    isError,
-    data: eventData,
-    error,
-  } = useQuery({
+  const { isPending, data: eventData } = useQuery({
     queryKey: ['event', keyString],
     queryFn: () => fetchEventData(keyString),
   });
 
-  const [isViewed, setIsViewed] = useState(false);
-
-  useEffect(() => {
-    if (eventData) {
-      setIsViewed(true);
-    }
-  }, [eventData]);
+  const [isViewed, setIsViewed] = useState(true);
 
   const name = eventTagList.get(keyString)?.text;
   return (
@@ -82,16 +71,14 @@ const EventTagComponent = ({ keyString }: EventTagComponentProps) => {
               spaceBetween: 0,
             },
           }}
-          slidesPerView={3} //한 슬라이드에 보여줄 갯수
+          slidesPerView={2} //한 슬라이드에 보여줄 갯수
           spaceBetween={5} //슬라이드간 거리
           loop={true}
           modules={[A11y]}>
           {isPending ? (
             <></>
-          ) : isError ? (
-            <></>
           ) : (
-            eventData.map((data: any) => (
+            eventData?.map((data: any) => (
               <SwiperSlide key={data} className="flex justify-center">
                 <EventComponent
                   id={data.shortcut}

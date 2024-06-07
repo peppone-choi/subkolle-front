@@ -27,9 +27,9 @@ const HeaderMenus = () => {
     <>
       <div className="flex text-white font-semibold md:space-x-16 lg:space-x-3 xl:ml-6 space-x-3 xl:space-x-6 ml-0 ">
         {isLoading ? (
-          <div>메뉴를 로딩중입니다</div>
+          <div className="flex items-center w-full">메뉴를 로딩중입니다</div>
         ) : isError ? (
-          <div>메뉴를 불러오지 못하였습니다.</div>
+          <div className="flex items-center w-full">메뉴를 불러오지 못하였습니다.</div>
         ) : (
           menus.map((menu: HeaderMenuType) => {
             return (

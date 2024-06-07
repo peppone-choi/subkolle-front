@@ -1,21 +1,26 @@
-import React from 'react';
+'use client';
+
+import React, { useEffect, useState } from 'react';
 import { IconType } from 'react-icons';
 import { CustomIconProps } from '@/types/types';
 import { iconType } from '@/config/iconType';
 
-const CustomIcon = async ({ type, name }: CustomIconProps) => {
-  const iconGroup = await iconType();
-  const iconTypes: { [key: string]: IconType } | { default: any } = iconGroup.filter(
-    iconTypes => iconTypes.name === type,
-  )?.[0].icon;
+const CustomIcon = ({ type, name }: CustomIconProps) => {
+  const [iconData, setIconData] = useState<any>();
 
-  if (!iconTypes) {
+  useEffect(() => {
+    const fetchIconData = async (type: string) => {
+      const res = await iconType(type);
+      setIconData(res);
+    };
+    fetchIconData(type);
+  }, [name]);
+
+  if (!iconData) {
     return null;
   }
 
-  const IconComponent = (iconTypes as { [key: string]: IconType })[name] as IconType;
-  // const IconComponent = iconTypes.default.[name] as IconType;
-
+  const IconComponent = (iconData as { [key: string]: IconType })[name] as IconType;
   return <IconComponent />;
 };
 

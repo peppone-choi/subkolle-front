@@ -2,9 +2,13 @@ import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 
 const fetchEventData = async (id: string) => {
-  const res = await fetch(`/api/event/${id}`);
-  const data = await res.json();
-  return data;
+  try {
+    const res = await fetch(`/api/event/${id}`);
+    const data = await res.json();
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 const EventInfoPage = (context: { params: { id: string } }) => {
@@ -38,7 +42,6 @@ const EventInfoPage = (context: { params: { id: string } }) => {
       </main>
     );
   }
-  console.log(eventData);
   return (
     <main className="w-screen justify-center">
       <div className="flex justify-center">
