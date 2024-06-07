@@ -10,7 +10,11 @@ import Image from 'next/image';
 import { useQuery } from '@tanstack/react-query';
 
 const fetchCarousels = async () => {
-  return (await fetch('http://localhost:3000/api/carousel')).json();
+  try {
+    return (await fetch('http://localhost:3000/api/carousel')).json();
+  } catch (error) {
+    throw new Error('캐러셀 데이터를 불러오지 못하였습니다.');
+  }
 };
 
 const Carousel = () => {
@@ -30,7 +34,7 @@ const Carousel = () => {
     </div>
   ) : isError ? (
     <div>
-      <h1>캐러셀 데이터를 로딩 할 수 없습니다 : {error.message}</h1>
+      <h1>캐러셀 데이터를 불러오지 못했습니다.</h1>
     </div>
   ) : (
     <Swiper

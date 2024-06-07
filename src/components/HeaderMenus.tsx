@@ -7,7 +7,11 @@ import { useQuery } from '@tanstack/react-query';
 import { HeaderMenuType } from '@/types/types';
 
 const fetchMenus = async () => {
-  return (await fetch('http://localhost:3000/api/menu')).json();
+  try {
+    return (await fetch('http://localhost:3000/api/menu')).json();
+  } catch (error) {
+    throw new Error('메뉴를 불러오지 못하였습니다.');
+  }
 };
 
 const HeaderMenus = () => {

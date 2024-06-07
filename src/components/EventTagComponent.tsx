@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import EventComponent from './EventComponent';
 import { eventTagList } from '@/config/eventTagList';
 import { EventTagComponentProps } from '@/types/types';
@@ -34,7 +34,13 @@ const EventTagComponent = ({ handleEventIdChange, keyString }: EventTagComponent
     queryFn: () => fetchEventData(keyString),
   });
 
-  const [isViewed, setIsViewed] = useState(true);
+  const [isViewed, setIsViewed] = useState(false);
+
+  useEffect(() => {
+    if (eventData) {
+      setIsViewed(true);
+    }
+  }, [eventData]);
 
   const name = eventTagList.get(keyString)?.text;
   return (
