@@ -2,12 +2,12 @@
 
 import EventTagComponent from '@/components/EventTagComponent';
 import { eventTagList } from '@/config/eventTagList';
-import { useEffect, useRef, useState } from 'react';
+import { useRef } from 'react';
 import EventModal from '@/components/EventModal';
 import React from 'react';
 import dynamic from 'next/dynamic';
 import { useDispatch, useSelector } from 'react-redux';
-import { modalClose, modalOpen, resetEventModalItem } from '@/store/eventModalItem';
+import { modalClose, resetEventModalItem } from '@/store/eventModalItem';
 
 const Carousel = dynamic(() => import('@/components/Carousel'), { ssr: true });
 

@@ -1,12 +1,12 @@
-import React, { Suspense } from 'react';
+import React from 'react';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
-import Footer from '@/components/Footer';
-import ReactQueryProviders from '@/util/react-query-provider';
-import store from '@/store/store';
-import ReduxProvider from '@/store/provider';
-const Header = React.lazy(() => import('@/components/Header'));
+import dynamic from 'next/dynamic';
+const ReactQueryProviders = dynamic(() => import('@/util/react-query-provider'));
+const ReduxProvider = dynamic(() => import('@/store/provider'));
+const Footer = dynamic(() => import('@/components/Footer'));
+const Header = dynamic(() => import('@/components/Header'));
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {

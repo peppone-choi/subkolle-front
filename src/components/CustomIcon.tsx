@@ -3,12 +3,18 @@ import { IconType } from 'react-icons';
 import { CustomIconProps } from '@/types/types';
 import { iconType } from '@/config/iconType';
 
-const CustomIcon = ({ type, name }: CustomIconProps) => {
-  const icon = iconType.find(types => types.name === type)?.icon as Record<string, IconType>;
-  if (!icon) {
+const CustomIcon = async ({ type, name }: CustomIconProps) => {
+  const iconGroup = await iconType();
+  const iconTypes: { [key: string]: IconType } | { default: any } = iconGroup.filter(
+    iconTypes => iconTypes.name === type,
+  )?.[0].icon;
+
+  if (!iconTypes) {
     return null;
   }
-  const IconComponent = icon[name] as IconType;
+
+  const IconComponent = (iconTypes as { [key: string]: IconType })[name] as IconType;
+  // const IconComponent = iconTypes.default.[name] as IconType;
 
   return <IconComponent />;
 };

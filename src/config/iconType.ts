@@ -1,158 +1,160 @@
-import * as AI from 'react-icons/ai';
-import * as BS from 'react-icons/bs';
-import * as BI from 'react-icons/bi';
-import * as CI from 'react-icons/ci';
-import * as CG from 'react-icons/cg';
-import * as DI from 'react-icons/di';
-import * as FI from 'react-icons/fi';
-import * as FC from 'react-icons/fc';
-import * as FA from 'react-icons/fa';
-import * as FA6 from 'react-icons/fa6';
-import * as GI from 'react-icons/gi';
-import * as GO from 'react-icons/go';
-import * as GR from 'react-icons/gr';
-import * as HI from 'react-icons/hi';
-import * as HI2 from 'react-icons/hi2';
-import * as IM from 'react-icons/im';
-import * as LIA from 'react-icons/lia';
-import * as IO from 'react-icons/io';
-import * as IO5 from 'react-icons/io5';
-import * as LU from 'react-icons/lu';
-import * as MD from 'react-icons/md';
-import * as PI from 'react-icons/pi';
-import * as RX from 'react-icons/rx';
-import * as RI from 'react-icons/ri';
-import * as SI from 'react-icons/si';
-import * as SL from 'react-icons/sl';
-import * as TB from 'react-icons/tb';
-import * as TFI from 'react-icons/tfi';
-import * as TI from 'react-icons/ti';
-import * as VSC from 'react-icons/vsc';
-import * as WI from 'react-icons/wi';
-
-export const iconType = [
-  {
-    name: 'ai',
-    icon: AI,
-  },
-  {
-    name: 'bs',
-    icon: BS,
-  },
-  {
-    name: 'bi',
-    icon: BI,
-  },
-  {
-    name: 'ci',
-    icon: CI,
-  },
-  {
-    name: 'cg',
-    icon: CG,
-  },
-  {
-    name: 'di',
-    icon: DI,
-  },
-  {
-    name: 'fi',
-    icon: FI,
-  },
-  {
-    name: 'fc',
-    icon: FC,
-  },
-  {
-    name: 'fa',
-    icon: FA,
-  },
-  {
-    name: 'fa6',
-    icon: FA6,
-  },
-  {
-    name: 'gi',
-    icon: GI,
-  },
-  {
-    name: 'go',
-    icon: GO,
-  },
-  {
-    name: 'gr',
-    icon: GR,
-  },
-  {
-    name: 'hi',
-    icon: HI,
-  },
-  {
-    name: 'hi2',
-    icon: HI2,
-  },
-  {
-    name: 'im',
-    icon: IM,
-  },
-  {
-    name: 'lia',
-    icon: LIA,
-  },
-  {
-    name: 'io',
-    icon: IO,
-  },
-  {
-    name: 'io5',
-    icon: IO5,
-  },
-  {
-    name: 'lu',
-    icon: LU,
-  },
-  {
-    name: 'md',
-    icon: MD,
-  },
-  {
-    name: 'pi',
-    icon: PI,
-  },
-  {
-    name: 'rx',
-    icon: RX,
-  },
-  {
-    name: 'ri',
-    icon: RI,
-  },
-  {
-    name: 'si',
-    icon: SI,
-  },
-  {
-    name: 'sl',
-    icon: SL,
-  },
-  {
-    name: 'tb',
-    icon: TB,
-  },
-  {
-    name: 'tfi',
-    icon: TFI,
-  },
-  {
-    name: 'ti',
-    icon: TI,
-  },
-  {
-    name: 'vsc',
-    icon: VSC,
-  },
-  {
-    name: 'wi',
-    icon: WI,
-  },
-];
+export const iconType = async () => {
+  const AI = await import('react-icons/ai');
+  const BS = await import('react-icons/bs');
+  const BI = await import('react-icons/bi');
+  const CI = await import('react-icons/ci');
+  const CG = await import('react-icons/cg');
+  const DI = await import('react-icons/di');
+  const FI = await import('react-icons/fi');
+  const FC = await import('react-icons/fc');
+  const FA = await import('react-icons/fa');
+  const FA6 = await import('react-icons/fa6');
+  const GI = await import('react-icons/gi');
+  const GO = await import('react-icons/go');
+  const GR = await import('react-icons/gr');
+  const HI = await import('react-icons/hi');
+  const HI2 = await import('react-icons/hi2');
+  const IM = await import('react-icons/im');
+  const LIA = await import('react-icons/lia');
+  const IO = await import('react-icons/io');
+  const IO5 = await import('react-icons/io5');
+  const LU = await import('react-icons/lu');
+  const MD = await import('react-icons/md');
+  const PI = await import('react-icons/pi');
+  const RX = await import('react-icons/rx');
+  const RI = await import('react-icons/ri');
+  const SI = await import('react-icons/si');
+  const SL = await import('react-icons/sl');
+  const TB = await import('react-icons/tb');
+  const TFI = await import('react-icons/tfi');
+  const TI = await import('react-icons/ti');
+  const VSC = await import('react-icons/vsc');
+  const WI = await import('react-icons/wi');
+  const iconTypeArray = [
+    {
+      name: 'ai',
+      icon: AI,
+    },
+    {
+      name: 'bs',
+      icon: BS,
+    },
+    {
+      name: 'bi',
+      icon: BI,
+    },
+    {
+      name: 'ci',
+      icon: CI,
+    },
+    {
+      name: 'cg',
+      icon: CG,
+    },
+    {
+      name: 'di',
+      icon: DI,
+    },
+    {
+      name: 'fi',
+      icon: FI,
+    },
+    {
+      name: 'fc',
+      icon: FC,
+    },
+    {
+      name: 'fa',
+      icon: FA,
+    },
+    {
+      name: 'fa6',
+      icon: FA6,
+    },
+    {
+      name: 'gi',
+      icon: GI,
+    },
+    {
+      name: 'go',
+      icon: GO,
+    },
+    {
+      name: 'gr',
+      icon: GR,
+    },
+    {
+      name: 'hi',
+      icon: HI,
+    },
+    {
+      name: 'hi2',
+      icon: HI2,
+    },
+    {
+      name: 'im',
+      icon: IM,
+    },
+    {
+      name: 'lia',
+      icon: LIA,
+    },
+    {
+      name: 'io',
+      icon: IO,
+    },
+    {
+      name: 'io5',
+      icon: IO5,
+    },
+    {
+      name: 'lu',
+      icon: LU,
+    },
+    {
+      name: 'md',
+      icon: MD,
+    },
+    {
+      name: 'pi',
+      icon: PI,
+    },
+    {
+      name: 'rx',
+      icon: RX,
+    },
+    {
+      name: 'ri',
+      icon: RI,
+    },
+    {
+      name: 'si',
+      icon: SI,
+    },
+    {
+      name: 'sl',
+      icon: SL,
+    },
+    {
+      name: 'tb',
+      icon: TB,
+    },
+    {
+      name: 'tfi',
+      icon: TFI,
+    },
+    {
+      name: 'ti',
+      icon: TI,
+    },
+    {
+      name: 'vsc',
+      icon: VSC,
+    },
+    {
+      name: 'wi',
+      icon: WI,
+    },
+  ];
+  return iconTypeArray;
+};
