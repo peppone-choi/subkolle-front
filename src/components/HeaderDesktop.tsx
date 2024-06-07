@@ -24,7 +24,7 @@ const HeaderDesktop = () => {
           <div>
             <SearchInput />
           </div>
-          <div className="">{loginUser ? <AvatarSmall /> : <LoginButton />}</div>
+          <div className="">{loginUser.id === -1 ? <LoginButton /> : <AvatarSmall />}</div>
         </div>
       </div>
     </>
