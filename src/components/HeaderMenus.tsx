@@ -7,31 +7,33 @@ import { useQuery } from '@tanstack/react-query';
 import { HeaderMenuType } from '@/types/types';
 
 const fetchMenus = async () => {
-  try {
-    return (await fetch('http://localhost:3000/api/menu')).json();
-  } catch (error) {
-    throw new Error('메뉴를 불러오지 못하였습니다.');
+  const res = await fetch('http://localhost:3000/api/menu');
+  if (!res.ok) {
+    const { error } = await res.json();
+    throw new Error(error);
   }
+  return res.json();
 };
 
 const HeaderMenus = () => {
   const {
-    isLoading,
     data: menus,
+    isPending,
     isError,
+    error,
   } = useQuery({
     queryKey: ['menu'],
     queryFn: fetchMenus,
+    retry: false,
   });
+
   return (
     <>
       <div className="flex text-white font-semibold md:space-x-16 lg:space-x-3 xl:ml-6 space-x-3 xl:space-x-6 ml-0 ">
-        {isLoading ? (
-          <div className="flex items-center w-full">메뉴를 로딩중입니다</div>
-        ) : isError ? (
-          <div className="flex items-center w-full">메뉴를 불러오지 못하였습니다.</div>
+        {isError ? (
+          <p>{error.message}</p>
         ) : (
-          menus.map((menu: HeaderMenuType) => {
+          menus?.map((menu: HeaderMenuType) => {
             return (
               <Link href={menu.linkTo} key={menu.id}>
                 <div className="flex items-center w-full">

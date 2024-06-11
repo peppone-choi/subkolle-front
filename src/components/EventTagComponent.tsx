@@ -4,32 +4,39 @@ import React, { useEffect, useState } from 'react';
 import EventComponent from './EventComponent';
 import { eventTagList } from '@/config/eventTagList';
 import { EventTagComponentProps } from '@/types/types';
-import { useQuery } from '@tanstack/react-query';
+import { QueryCache, QueryClient, useQuery } from '@tanstack/react-query';
 import { Swiper } from 'swiper/react';
 import { A11y } from 'swiper/modules';
 import { SwiperSlide } from 'swiper/react';
-
 import 'swiper/css';
 
 const fetchEventData = async (key: string) => {
-  try {
-    const response = await fetch(`http://localhost:3000/api/event/tags/${key}`, { cache: 'reload' });
-    if (!response.ok) {
-      throw new Error('Failed to fetch event data');
-    }
-    return response.json();
-  } catch (error) {
-    console.error('Failed to fetch event data', error);
+  const res = await fetch(`http://localhost:3000/api/event/tags/${key}`, { cache: 'reload' });
+  if (!res.ok) {
+    const { error } = await res.json();
+    throw new Error(error);
   }
+  return res.json();
 };
 
 const EventTagComponent = ({ keyString }: EventTagComponentProps) => {
-  const { isPending, data: eventData } = useQuery({
+  const {
+    data: eventData,
+    error,
+    isError,
+  } = useQuery({
     queryKey: ['event', keyString],
     queryFn: () => fetchEventData(keyString),
+    retry: false,
   });
 
-  const [isViewed, setIsViewed] = useState(true);
+  const [isViewed, setIsViewed] = useState(false);
+
+  useEffect(() => {
+    if (eventData) {
+      setIsViewed(true);
+    }
+  }, [eventData]);
 
   const name = eventTagList.get(keyString)?.text;
   return (
@@ -52,33 +59,33 @@ const EventTagComponent = ({ keyString }: EventTagComponentProps) => {
         </p>
       </h1>
       <div className={`w-screen ${!isViewed && 'hidden'}`}>
-        <Swiper
-          breakpoints={{
-            768: {
-              slidesPerView: 4,
-              spaceBetween: 0,
-            },
-            1024: {
-              slidesPerView: 3,
-              spaceBetween: 0,
-            },
-            1510: {
-              slidesPerView: 4,
-              spaceBetween: 0,
-            },
-            1780: {
-              slidesPerView: 6,
-              spaceBetween: 0,
-            },
-          }}
-          slidesPerView={2} //한 슬라이드에 보여줄 갯수
-          spaceBetween={5} //슬라이드간 거리
-          loop={true}
-          modules={[A11y]}>
-          {isPending ? (
-            <></>
-          ) : (
-            eventData?.map((data: any) => (
+        {isError ? (
+          <p>{error.message}</p>
+        ) : (
+          <Swiper
+            breakpoints={{
+              768: {
+                slidesPerView: 4,
+                spaceBetween: 0,
+              },
+              1024: {
+                slidesPerView: 3,
+                spaceBetween: 0,
+              },
+              1510: {
+                slidesPerView: 4,
+                spaceBetween: 0,
+              },
+              1780: {
+                slidesPerView: 6,
+                spaceBetween: 0,
+              },
+            }}
+            slidesPerView={2} //한 슬라이드에 보여줄 갯수
+            spaceBetween={5} //슬라이드간 거리
+            loop={true}
+            modules={[A11y]}>
+            {eventData?.map((data: any) => (
               <SwiperSlide key={data} className="flex justify-center">
                 <EventComponent
                   id={data.shortcut}
@@ -111,9 +118,9 @@ const EventTagComponent = ({ keyString }: EventTagComponentProps) => {
                   isOverNight={data.isOverNight}
                 />
               </SwiperSlide>
-            ))
-          )}
-        </Swiper>
+            ))}
+          </Swiper>
+        )}
       </div>
     </div>
   );

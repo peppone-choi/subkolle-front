@@ -10,6 +10,39 @@ const OuterAxiosInstance = ({ baseUrl, body, isCredentials }: OuterAxiosInstance
   });
 };
 
+axios.interceptors.request.use(
+  config => {
+    return config;
+  },
+  error => {
+    console.error('Request Error');
+  },
+);
+
+axios.interceptors.response.use(
+  response => {
+    return response;
+  },
+  error => {
+    if (error.response.status === 400) {
+      console.error('Bad Request');
+    }
+    if (error.response.status === 401) {
+      console.error('Unauthorized');
+    }
+    if (error.response.status === 403) {
+      console.error('Forbidden');
+    }
+    if (error.response.status === 404) {
+      console.error('Not Found');
+    }
+    if (error.response.status === 500) {
+      console.error('Internal Server Error');
+    }
+    return Promise.resolve(error);
+  },
+);
+
 export const BackendApiInstance = (bodyData: object | null) => {
   return OuterAxiosInstance({
     baseUrl: 'http://localhost:8080',

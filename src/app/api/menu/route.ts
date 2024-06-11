@@ -1,4 +1,5 @@
 import { BackendApiInstance } from '@/util/Axios';
+import { isAxiosError } from 'axios';
 import { NextResponse } from 'next/server';
 
 export async function GET() {
@@ -12,6 +13,13 @@ export async function GET() {
     const data = await res.data;
     return NextResponse.json(data);
   } catch (error) {
-    return NextResponse.error();
+    if (isAxiosError(error)) {
+      return NextResponse.json(
+        { error: error.response?.data },
+        {
+          status: error.response?.status,
+        },
+      );
+    }
   }
 }

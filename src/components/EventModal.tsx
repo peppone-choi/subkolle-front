@@ -8,26 +8,26 @@ import { useQuery } from '@tanstack/react-query';
 import Image from 'next/image';
 import { useDispatch } from 'react-redux';
 import { modalClose, resetEventModalItem } from '@/store/eventModalItem';
+import axios, { AxiosError } from 'axios';
 
 const fetchEventData = async (id: string) => {
-  try {
-    const res = await fetch(`/api/event/${id}`);
-    const data = await res.json();
-    return data;
-  } catch (error) {
-    console.error(error);
+  const res = await fetch(`/api/event/${id}`);
+  if (!res.ok) {
+    const { error } = await res.json();
+    throw new Error(error);
   }
+  return res.json();
 };
 
 const EventModal = ({ id }: EventModalProps) => {
   const {
-    isPending,
-    isError,
     data: eventData,
+    isError,
     error,
   } = useQuery({
     queryKey: ['event', id],
     queryFn: () => fetchEventData(id),
+    retry: false,
   });
 
   const dispatch = useDispatch();
@@ -39,10 +39,8 @@ const EventModal = ({ id }: EventModalProps) => {
 
   return (
     <div className="max-h-[32rem] w-full rounded-lg bg-white">
-      {isPending ? (
-        <></>
-      ) : isError ? (
-        <></>
+      {isError ? (
+        <div>{error.message}</div>
       ) : (
         <>
           <div className="relative h-44 w-full rounded-t-lg">
@@ -86,6 +84,7 @@ const EventModal = ({ id }: EventModalProps) => {
                   {eventData?.tag.map((tag: string) => {
                     return (
                       <Badge
+                        key={tag}
                         name={eventTagList.get(tag)?.text as string}
                         color={eventTagList.get(tag)?.color as string}
                         textColor={eventTagList.get(tag)?.textColor as string}
@@ -142,23 +141,7 @@ const EventModal = ({ id }: EventModalProps) => {
                 <a href={eventData?.detail.link}>{eventData?.detail.link}</a>
               </div>
               <div className="flex mt-2 md:mt-10">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo eum pariatur deleniti nostrum! Ipsam
-                velit fugiat ut, repellat voluptatum hic sed porro rem quasi minima maiores, debitis qui at assumenda.
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia alias perferendis eos tenetur quis non
-                eveniet quam porro voluptate nostrum officiis aut repellendus sapiente impedit unde vel, commodi culpa
-                dicta. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit molestias commodi accusamus et
-                repellendus, maxime, fugit quibusdam perspiciatis, expedita magni veritatis. Harum cum quas expedita
-                explicabo exercitationem labore recusandae optio. Lorem ipsum dolor sit amet consectetur adipisicing
-                elit. Id cupiditate eveniet temporibus ducimus error tempore inventore nemo amet enim laborum, velit
-                tempora a dolor minima adipisci quisquam, voluptas illum porro! Lorem ipsum dolor, sit amet consectetur
-                adipisicing elit. Nobis pariatur fugit, provident quod quibusdam obcaecati et error accusamus, debitis
-                quaerat accusantium fuga ea commodi molestias culpa delectus! Rerum, eveniet quas? Lorem ipsum dolor sit
-                amet consectetur adipisicing elit. Repellendus pariatur voluptate nesciunt nobis quod, quisquam odio
-                quae est voluptatem voluptatum dolorem magni cupiditate autem animi. Quis consequatur eveniet neque
-                voluptas? Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sunt reiciendis magni labore ipsam
-                quaerat! Est nam cumque, a eveniet minima quae soluta perspiciatis perferendis similique! Repudiandae
-                velit fugit saepe? Adipisci.
-                {/* <p>{eventData?.detail.description}</p> */}
+                <p>{eventData?.detail.description}</p>
               </div>
             </div>
           </div>
