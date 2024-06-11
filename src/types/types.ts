@@ -101,3 +101,17 @@ export type OuterAxiosInstanceProp = {
   body: object | null;
   isCredentials: boolean;
 };
+
+export const SocialLoginType = {
+  KAKAO: 'kakao',
+  GOOGLE: 'google',
+  NAVER: 'naver',
+  FACEBOOK: 'facebook',
+  TWITTER: 'twitter',
+} as const;
+
+export type SocialLogin = (typeof SocialLoginType)[keyof typeof SocialLoginType];
+
+export interface SocialLoginProps {
+  provider: SocialLogin;
+}

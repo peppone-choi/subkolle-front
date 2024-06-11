@@ -33,7 +33,7 @@ const EventComponent = ({
       onClick={() => {
         handleEventIdChange(id);
       }}
-      className="hover:cursor-pointer w-40 h-40 lg:w-72 lg:h-80 bg-white shadow-2xl rounded-lg">
+      className="hover:cursor-pointer w-40 h-40 lg:w-72 lg:h-80 bg-white shadow-md lg:shadow-2xl rounded-lg">
       <div className="relative h-14 lg:h-1/2 w-full rounded-t-lg">
         <Image
           src={headerImagePath}

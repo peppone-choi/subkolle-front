@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import EventComponent from './EventComponent';
 import { eventTagList } from '@/config/eventTagList';
 import { EventTagComponentProps } from '@/types/types';
-import { QueryCache, QueryClient, useQuery } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 import { Swiper } from 'swiper/react';
 import { A11y } from 'swiper/modules';
 import { SwiperSlide } from 'swiper/react';
@@ -69,7 +69,7 @@ const EventTagComponent = ({ keyString }: EventTagComponentProps) => {
                 spaceBetween: 0,
               },
               1024: {
-                slidesPerView: 3,
+                slidesPerView: 4,
                 spaceBetween: 0,
               },
               1510: {
