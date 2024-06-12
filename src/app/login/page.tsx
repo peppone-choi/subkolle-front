@@ -1,11 +1,11 @@
 'use client';
 import LoginComponent from '@/components/LoginComponent';
 import SocialLoginButtonPlate from '@/components/SocialLoginButtonPlate';
+import { useAppSelector } from '@/store/store';
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 
 const LoginPage = () => {
-  const loginUser = useSelector((state: any) => state.loginUser.user);
+  const loginUser = useAppSelector((state: any) => state.loginUser.user);
   return (
     <main className="flex justify-center items-center">
       <div className="flex mt-auto md:mt-32 items-center w-full xl:w-9/12 p-2 xl:p-8 justify-center">

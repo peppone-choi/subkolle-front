@@ -5,8 +5,8 @@ import Badge from './Badge';
 import { eventStateList, eventTagList } from '@/config/eventTagList';
 import { EventComponentProps } from '@/types/types';
 import Image from 'next/image';
-import { useDispatch } from 'react-redux';
 import { modalOpen, setEventModalItem } from '@/store/eventModalItem';
+import { useAppDispatch } from '@/store/store';
 
 const EventComponent = ({
   id,
@@ -21,7 +21,7 @@ const EventComponent = ({
   state,
   isOverNight,
 }: EventComponentProps) => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const handleEventIdChange = (id: string) => {
     dispatch(modalOpen());

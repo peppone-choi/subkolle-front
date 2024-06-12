@@ -5,15 +5,15 @@ import { eventTagList } from '@/config/eventTagList';
 import { useRef } from 'react';
 import EventModal from '@/components/EventModal';
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { modalClose, resetEventModalItem } from '@/store/eventModalItem';
 import Carousel from '@/components/Carousel';
+import { useAppDispatch, useAppSelector } from '@/store/store';
 
 export default function Home() {
   const modalRef = useRef<HTMLDivElement>(null);
-  const eventId = useSelector((state: any) => state.eventModalItem.id);
-  const isModalOpen = useSelector((state: any) => state.eventModalItem.modalOpen);
-  const dispatch = useDispatch();
+  const eventId = useAppSelector((state: any) => state.eventModalItem.id);
+  const isModalOpen = useAppSelector((state: any) => state.eventModalItem.modalOpen);
+  const dispatch = useAppDispatch();
 
   const handleModalCloseOutside = (e: { target: any }) => {
     if (isModalOpen && !modalRef.current?.contains(e.target)) {

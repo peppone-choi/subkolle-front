@@ -1,10 +1,10 @@
-import { BackendApiInstance } from '@/util/Axios';
+import { BackendApiInstance } from '@/util/axios';
 import { isAxiosError } from 'axios';
 import { NextResponse } from 'next/server';
 
 export async function GET(request: Request, context: { params: { tag: string } }) {
   try {
-    const res = await BackendApiInstance(null).get(`/api/v1/events/tag/${context.params.tag}`, {
+    const res = await BackendApiInstance().get(`/api/v1/events/tag/${context.params.tag}`, {
       headers: {
         'Content-Type': 'application/json',
       },

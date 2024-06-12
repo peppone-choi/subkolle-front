@@ -1,10 +1,10 @@
-import { BackendApiInstance } from '@/util/Axios';
+import { BackendApiInstance } from '@/util/axios';
 import { isAxiosError } from 'axios';
 import { NextResponse } from 'next/server';
 
 export async function GET() {
   try {
-    const res = await BackendApiInstance(null).get('/api/v1/menus', {
+    const res = await BackendApiInstance().get('/api/v1/menus', {
       headers: {
         'Content-Type': 'application/json',
       },

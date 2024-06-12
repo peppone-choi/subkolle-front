@@ -98,7 +98,6 @@ export type LogoProps = {
 
 export type OuterAxiosInstanceProp = {
   baseUrl: string;
-  body: object | null;
   isCredentials: boolean;
 };
 

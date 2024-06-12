@@ -1,10 +1,12 @@
 'use client';
 
-import React from 'react';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useRouter } from 'next/navigation';
+import { useDispatch } from 'react-redux';
+import { login } from '@/store/login';
+import { useAppDispatch } from '@/store/store';
 
 const validationSchema = yup.object().shape({
   email: yup
@@ -24,8 +26,36 @@ const LoginComponent = () => {
   } = useForm({
     resolver: yupResolver(validationSchema),
   });
-  const onSubmit = (data: any) => {
-    console.log(JSON.stringify(data));
+
+  const dispatch = useAppDispatch();
+
+  const onSubmit = async (data: any) => {
+    const loginData = await fetch('http://localhost:3000/api/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
+    const loginResponse = await loginData.json();
+    if (loginResponse.error) {
+      console.error(loginResponse.error);
+      return;
+    }
+    dispatch(
+      login({
+        accessToken: loginResponse.accessToken,
+        refreshToken: loginResponse.refreshToken,
+        user: {
+          id: loginResponse.id,
+          uuid: loginResponse.userUUID,
+          email: loginResponse.email,
+          nickname: loginResponse.nickname,
+          profileImage: loginResponse.profileImage,
+          role: loginResponse.role,
+        },
+      }),
+    );
     route.push('/');
   };
   return (

@@ -6,9 +6,8 @@ import { eventStateList, eventTagList } from '@/config/eventTagList';
 import { EventModalProps } from '@/types/types';
 import { useQuery } from '@tanstack/react-query';
 import Image from 'next/image';
-import { useDispatch } from 'react-redux';
 import { modalClose, resetEventModalItem } from '@/store/eventModalItem';
-import axios, { AxiosError } from 'axios';
+import { useAppDispatch } from '@/store/store';
 
 const fetchEventData = async (id: string) => {
   const res = await fetch(`/api/event/${id}`);
@@ -30,7 +29,7 @@ const EventModal = ({ id }: EventModalProps) => {
     retry: false,
   });
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const handleModalClose = () => {
     dispatch(modalClose());

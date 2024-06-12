@@ -16,6 +16,7 @@ const fetchEventData = async (key: string) => {
     const { error } = await res.json();
     throw new Error(error);
   }
+
   return res.json();
 };
 

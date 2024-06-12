@@ -1,11 +1,10 @@
-import { BackendApiInstance } from '@/util/Axios';
-import { AxiosError, isAxiosError } from 'axios';
-import { error } from 'console';
+import { BackendApiInstance } from '@/util/axios';
+import { isAxiosError } from 'axios';
 import { NextResponse } from 'next/server';
 
 export async function GET() {
   try {
-    const res = await BackendApiInstance(null).get('/api/v1/carousels', {
+    const res = await BackendApiInstance().get('/api/v1/carousels', {
       headers: {
         'Content-Type': 'application/json',
       },

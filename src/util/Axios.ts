@@ -1,12 +1,15 @@
 import { OuterAxiosInstanceProp } from '@/types/types';
 import axios from 'axios';
 
-const OuterAxiosInstance = ({ baseUrl, body, isCredentials }: OuterAxiosInstanceProp) => {
+const OuterAxiosInstance = ({ baseUrl, isCredentials }: OuterAxiosInstanceProp) => {
   return axios.create({
     baseURL: baseUrl,
     timeout: 300,
-    data: JSON.stringify(body),
     withCredentials: isCredentials,
+    headers: {
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': 'http://localhost:8080',
+    },
   });
 };
 
@@ -43,11 +46,10 @@ axios.interceptors.response.use(
   },
 );
 
-export const BackendApiInstance = (bodyData: object | null) => {
+export const BackendApiInstance = () => {
   return OuterAxiosInstance({
     baseUrl: 'http://localhost:8080',
     isCredentials: true,
-    body: bodyData,
   });
 };
 
