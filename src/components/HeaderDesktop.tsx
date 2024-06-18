@@ -10,7 +10,7 @@ import AvatarSmall from './AvatarSmall';
 import { useAppSelector } from '@/store/store';
 
 const HeaderDesktop = () => {
-  const loginUser = useAppSelector((state: any) => state.loginUser.user);
+  const loginUser = useAppSelector((state: any) => state.loginUser);
   const [isClient, setIsClient] = useState(false);
   React.useEffect(() => {
     setIsClient(true);
@@ -29,7 +29,15 @@ const HeaderDesktop = () => {
             <div>
               <SearchInput />
             </div>
-            {loginUser.id === -1 ? <LoginButton /> : <AvatarSmall />}
+            {loginUser.user.id === -1 ? (
+              <LoginButton />
+            ) : (
+              <AvatarSmall
+                src={loginUser.user.profileImage}
+                nickname={loginUser.user.nickname}
+                accessToken={loginUser.accessToken}
+              />
+            )}
           </div>
         </div>
       </>

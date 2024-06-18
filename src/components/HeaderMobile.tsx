@@ -9,7 +9,7 @@ import LoginButton from './LoginButton';
 import { useAppSelector } from '@/store/store';
 
 const HeaderMobile = () => {
-  const loginUser = useAppSelector((state: any) => state.loginUser.user);
+  const loginUser = useAppSelector((state: any) => state.loginUser);
   const [isClient, setIsClient] = React.useState(false);
   React.useEffect(() => {
     setIsClient(true);
@@ -20,7 +20,15 @@ const HeaderMobile = () => {
         <div className="flex w-full h-16 ml-1 justify-between space-x-3 sm:space-x-32 items-center">
           <Logo isLogoBig={false} />
           <HeaderMenus />
-          {loginUser.id === -1 ? <LoginButton /> : <AvatarSmall />}
+          {loginUser.user.id === -1 ? (
+            <LoginButton />
+          ) : (
+            <AvatarSmall
+              src={loginUser.user.profileImage}
+              nickname={loginUser.user.nickname}
+              accessToken={loginUser.accessToken}
+            />
+          )}
         </div>
 
         <div className="absolute left-0 w-full top-16">
